@@ -6,7 +6,7 @@
 :root{
   --ink:#07171F; --deep:#0C2A37; --surface:#11394A; --surface2:#16465A;
   --line:#1E5A70; --foam:#EAF6F6; --mute:#9DC4CE; --gold:#FFC53D; --coral:#FF6B6B;
-  --lane-red:#E2403B; --lane-blue:#1B4F9C; --lane-cyan:#2E86D6; --lane-white:#EDF4F8;
+  --lane1:#0E83C9; --lane2:#FFFFFF; --lane3:#E2403B;
   --go:#36C9A8;
 }
 
@@ -25,48 +25,20 @@ body{
 
 /* ------------------------------------------------------------
    LANE ROPE
-   A real lane line: strung beads, red at the ends of the pool,
-   alternating blue and white through the middle. Four stacked
-   layers — gloss, bead shadow, bead separation, colour run.
-   One bead = 18px, so the run lengths below are bead counts.
+   The original flat rope: blue / white / red bands, no beading.
    ------------------------------------------------------------ */
 .rope{
-  height:18px;
+  height:8px;
   margin:0;
-  background:
-    /* 1. wet gloss across the top of every bead */
-    linear-gradient(180deg,
-      rgba(255,255,255,.50) 0%,
-      rgba(255,255,255,.16) 26%,
-      rgba(255,255,255,0)   46%,
-      rgba(0,0,0,.18)       76%,
-      rgba(0,0,0,.40)      100%),
-    /* 2. round each bead off — dark at the seams, lit in the middle */
-    repeating-radial-gradient(circle 9px at 9px 50%,
-      rgba(255,255,255,.14) 0 4px,
-      rgba(255,255,255,0)   4px 7px,
-      rgba(0,0,0,.30)       7px 9px),
-    /* 3. hard seam between beads */
-    repeating-linear-gradient(90deg,
-      rgba(0,0,0,.55) 0 1.5px,
-      transparent     1.5px 18px),
-    /* 4. the colour runs — 5 red, then 4-bead blue/white alternating */
-    repeating-linear-gradient(90deg,
-      var(--lane-red)   0     90px,
-      var(--lane-white) 90px  162px,
-      var(--lane-blue)  162px 234px,
-      var(--lane-white) 234px 306px,
-      var(--lane-cyan)  306px 378px,
-      var(--lane-white) 378px 450px,
-      var(--lane-blue)  450px 522px,
-      var(--lane-white) 522px 594px,
-      var(--lane-red)   594px 684px);
-  background-size:auto, 18px 18px, auto, auto;
-  border-radius:9px;
-  box-shadow:0 2px 10px rgba(0,0,0,.45), inset 0 0 0 1px rgba(0,0,0,.25);
+  border-radius:8px;
+  opacity:.85;
+  background:repeating-linear-gradient(90deg,
+    var(--lane1) 0 26px,
+    var(--lane2) 26px 34px,
+    var(--lane3) 34px 60px);
 }
 /* thinner rope for use as a divider inside a page */
-.rope.thin{height:12px;border-radius:6px;background-size:auto, 12px 12px, auto, auto}
+.rope.thin{height:6px;border-radius:6px;opacity:.7}
 
 /* ------------------------------------------------------------
    NAV
