@@ -8,7 +8,7 @@ window.WORKOUT_CONFIG = {
   coachName: "Coach Cody",
 
   // Where practice submissions get emailed. REPLACE THIS.
-  coachEmail: "you@example.com",
+  coachEmail: "cody.a.mackall@gmail.com",
 
   // Your repo URL. REPLACE THIS with your GitHub username.
   repoUrl: "https://github.com/YOUR-USERNAME/coach-cody-workout-library"
