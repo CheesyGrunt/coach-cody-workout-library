@@ -134,6 +134,29 @@ footer a:hover{text-decoration:underline}
 #lucky:hover{border-color:var(--gold);color:var(--gold)}
 .card.picked{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold), 0 12px 34px rgba(0,0,0,.45)}
 @media (prefers-reduced-motion: reduce){.card{transition:none}}
+
+/* --- send panel --- */
+.sendpanel{display:none;margin-top:18px;background:var(--surface);border:1px solid var(--line);
+  border-radius:12px;padding:18px}
+.sendpanel.open{display:block}
+.sendpanel h3{font-family:'Barlow Condensed';text-transform:uppercase;letter-spacing:.08em;
+  font-size:16px;margin:0 0 4px;color:var(--gold);font-weight:700}
+.sendpanel .lead{color:var(--mute);font-size:13.5px;margin:0 0 14px;line-height:1.6}
+.addr{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-bottom:16px}
+.addr code{flex:1;min-width:190px;background:var(--ink);border:1px solid var(--line);border-radius:9px;
+  padding:12px 14px;font-family:'JetBrains Mono';font-size:15px;color:var(--foam);
+  user-select:all;word-break:break-all}
+.copybtn{font-family:'Barlow Condensed';font-weight:600;font-size:14px;letter-spacing:.07em;
+  text-transform:uppercase;padding:11px 15px;border-radius:9px;cursor:pointer;white-space:nowrap;
+  border:1px solid var(--line);background:transparent;color:var(--foam);transition:.15s}
+.copybtn:hover{border-color:var(--gold);color:var(--gold)}
+.copybtn.done{background:#36C9A8;border-color:#36C9A8;color:#06251e}
+.tmpl{width:100%;min-height:190px;background:var(--ink);border:1px solid var(--line);border-radius:9px;
+  padding:12px;color:#D6ECEF;font-family:'JetBrains Mono';font-size:12.5px;line-height:1.65;
+  outline:none;resize:vertical}
+.tmpl:focus{border-color:var(--gold)}
+.sendrow{display:flex;gap:9px;flex-wrap:wrap;margin-top:12px;align-items:center}
+.sendrow .or{color:var(--mute);font-size:13px}
 </style>
 </head>
 <body>
@@ -179,8 +202,23 @@ footer a:hover{text-decoration:underline}
   <p>Every practice in here is free to run. Pick one that matches your day, adjust the intervals to your group, take it to the deck. That&rsquo;s the whole point &mdash; nobody should have to invent 473 workouts to figure out how a season is built.</p><p>And if you&rsquo;ve got a set worth sharing, send it. Typed, handwritten and photographed, a PDF, a screenshot, whatever you&rsquo;ve got. I&rsquo;ll format it, tag it, and it goes in the library with credit to you.</p>
   <p>No format required. If it works on deck, it works here. Questions about why a set is built the way it is are welcome too &mdash; that&rsquo;s how you learn this.</p>
   <div class="ctarow">
-    <a class="cta primary" id="submitMail" href="#">✉ Email me a practice</a>
+    <button class="cta primary" id="submitMail">✉ Email me a practice</button>
     <a class="cta ghost" id="submitIssue" href="#" target="_blank" rel="noopener">Submit on GitHub</a>
+  </div>
+
+  <div class="sendpanel" id="sendPanel">
+    <h3>Send it here</h3>
+    <p class="lead">Attach a photo, PDF, or screenshot &mdash; or paste the set straight into the body. Nothing below is required, it just saves me a round of questions.</p>
+    <div class="addr">
+      <code id="sendAddr"></code>
+      <button class="copybtn" id="copyAddr">Copy address</button>
+    </div>
+    <textarea class="tmpl" id="sendTmpl" spellcheck="false" readonly></textarea>
+    <div class="sendrow">
+      <button class="copybtn" id="copyTmpl">Copy the template</button>
+      <span class="or">or</span>
+      <a class="copybtn" id="openMail" href="#" style="text-decoration:none;display:inline-block">Open in your mail app</a>
+    </div>
   </div>
 </div></section>
 
@@ -328,24 +366,8 @@ render();
 (function(){
   const C = window.WORKOUT_CONFIG || {};
   const name  = C.coachName  || 'the coach';
-  const email = C.coachEmail || '';
-  const repo  = C.repoUrl    || '';
-
-  const subject = encodeURIComponent("Practice for Coach Cody's library");
-  const body = encodeURIComponent(
-    'Coach / team:\n\n' +
-    'Course (SCY / SCM / LCM):\n\n' +
-    'Group or ability level:\n\n' +
-    'Total distance:\n\n' +
-    'Practice:\n' +
-    '(paste it, or just attach a photo / PDF / screenshot — handwritten is fine)\n\n\n' +
-    'Anything I should know about how it ran:\n\n' +
-    'Credit it to:\n'
-  );
-  const mailto = email ? 'mailto:' + email + '?subject=' + subject + '&body=' + body : '#contribute';
-
-  const mail = document.getElementById('submitMail');
-  if (mail) mail.href = mailto;
+  const email = (C.coachEmail || '').trim();
+  const repo  = (C.repoUrl || '').trim();
 
   const fc = document.getElementById('footcount');
   if (fc) fc.textContent = DATA.workouts.length;
@@ -356,13 +378,87 @@ render();
   const issue = document.getElementById('submitIssue');
   const repoTop = document.getElementById('repoTop');
   const footrepo = document.getElementById('footrepo');
-  if (repo) {
+  if (repo && !/YOUR-USERNAME/.test(repo)) {
     if (issue) issue.href = repo.replace(/\/$/,'') + '/issues/new?template=submit-workout.yml';
     if (repoTop) repoTop.href = repo;
     if (footrepo) footrepo.href = repo;
   } else {
     [issue, repoTop, footrepo].forEach(function(el){ if (el) el.style.display='none'; });
   }
+
+  /* ----- send panel ----- */
+  const TEMPLATE =
+    'Coach / team:\n\n' +
+    'Course (SCY / SCM / LCM):\n\n' +
+    'Group or ability level:\n\n' +
+    'Total distance:\n\n' +
+    'Practice:\n' +
+    '(paste it, or attach a photo / PDF / screenshot - handwritten is fine)\n\n\n' +
+    'Anything I should know about how it ran:\n\n' +
+    'Credit it to:';
+
+  const btn    = document.getElementById('submitMail');
+  const panel  = document.getElementById('sendPanel');
+  const addrEl = document.getElementById('sendAddr');
+  const tmplEl = document.getElementById('sendTmpl');
+  const openEl = document.getElementById('openMail');
+
+  const valid = email && email.indexOf('@') > 0 && !/example\.com$/i.test(email);
+
+  if (!valid) {
+    // No usable address configured - say so instead of failing silently.
+    if (btn) {
+      btn.textContent = 'Email not set up yet';
+      btn.disabled = true;
+      btn.style.opacity = '.5';
+      btn.style.cursor = 'not-allowed';
+      btn.title = 'Set coachEmail in config.js';
+    }
+    return;
+  }
+
+  if (addrEl) addrEl.textContent = email;
+  if (tmplEl) tmplEl.value = TEMPLATE;
+  if (openEl) openEl.href = 'mailto:' + email +
+    '?subject=' + encodeURIComponent("Practice for Coach Cody's library") +
+    '&body=' + encodeURIComponent(TEMPLATE);
+
+  function flash(el, msg){
+    const old = el.textContent;
+    el.textContent = msg; el.classList.add('done');
+    setTimeout(function(){ el.textContent = old; el.classList.remove('done'); }, 1600);
+  }
+
+  function copy(text, el, msg){
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function(){ flash(el, msg); })
+        .catch(function(){ legacy(text, el, msg); });
+    } else { legacy(text, el, msg); }
+  }
+  function legacy(text, el, msg){
+    const ta = document.createElement('textarea');
+    ta.value = text; ta.style.position='fixed'; ta.style.opacity='0';
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); flash(el, msg); }
+    catch(e){ flash(el, 'Select it and copy'); }
+    ta.remove();
+  }
+
+  if (btn && panel) {
+    btn.onclick = function(){
+      panel.classList.toggle('open');
+      if (panel.classList.contains('open')) {
+        try { panel.scrollIntoView({behavior:'smooth', block:'nearest'}); } catch(e){}
+      }
+    };
+  }
+  const ca = document.getElementById('copyAddr');
+  if (ca) ca.onclick = function(){ copy(email, ca, 'Copied'); };
+  const ct = document.getElementById('copyTmpl');
+  if (ct) ct.onclick = function(){ copy(TEMPLATE, ct, 'Copied'); };
+
+  const top = document.getElementById('submitTop');
+  if (top) top.onclick = function(){ setTimeout(function(){ panel.classList.add('open'); }, 400); };
 })();
 </script>
 </body>
