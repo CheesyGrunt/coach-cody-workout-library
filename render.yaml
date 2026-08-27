@@ -1,0 +1,13 @@
+# Render Blueprint — tells Render exactly how to serve this site.
+# No build step, no dependencies. Just serve the folder as-is.
+services:
+  - type: web
+    name: coach-cody-workout-library
+    runtime: static
+    staticPublishPath: .
+    pullRequestPreviewsEnabled: false
+    headers:
+      - path: /*
+        name: X-Frame-Options
+        value: SAMEORIGIN
+    routes: []

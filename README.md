@@ -2,7 +2,7 @@
 
 473 swim practices in one searchable page. SCY, SCM, and LCM. Filter by energy system, filter by course, or search any set, drill, or distance.
 
-**Live site:** https://YOUR-USERNAME.github.io/coach-cody-workout-library/
+**Live site:** https://coach-cody-workout-library.onrender.com
 
 ---
 
@@ -42,6 +42,7 @@ Every practice keeps credit to whoever wrote it.
 | `data/workouts.json` | The source of truth. 473 practices. Edit this to add or fix one. |
 | `data/workouts.js` | Generated from the JSON — this is what the page loads. |
 | `tools/build-data.py` | Regenerates `workouts.js` after you edit the JSON. |
+| `render.yaml` | Tells Render how to serve the site. You shouldn't need to touch it. |
 
 ---
 
@@ -59,6 +60,8 @@ window.WORKOUT_CONFIG = {
 
 **2. Push it to GitHub**
 
+Render pulls from a Git repo, so the code still lives on GitHub — Render just serves it.
+
 Make a new repo on github.com (public, no README — this folder already has one), then from inside this folder:
 
 ```bash
@@ -70,11 +73,22 @@ git remote add origin https://github.com/YOUR-USERNAME/coach-cody-workout-librar
 git push -u origin main
 ```
 
-**3. Turn on GitHub Pages**
+**3. Deploy on Render**
 
-**Settings → Pages → Source: Deploy from a branch → Branch `main`, folder `/ (root)` → Save.**
+Sign in at [dashboard.render.com](https://dashboard.render.com), then **New + → Static Site**. Connect your GitHub account, pick this repo, and Render reads `render.yaml` for the rest:
 
-The site goes live at `https://YOUR-USERNAME.github.io/coach-cody-workout-library/`. That's the link you share.
+| Setting | Value |
+|---|---|
+| Branch | `main` |
+| Root Directory | *(leave blank)* |
+| Build Command | *(leave blank — there is no build step)* |
+| Publish Directory | `.` |
+
+Click **Create Static Site**. First deploy takes about a minute.
+
+Your URL shows at the top of the service page: `https://coach-cody-workout-library.onrender.com`. That's the link you share.
+
+Every push to `main` from here on redeploys automatically.
 
 ---
 
@@ -86,6 +100,8 @@ Edit `data/workouts.json`, add an entry, then run:
 python3 tools/build-data.py
 git add . && git commit -m "Add practice" && git push
 ```
+
+Render picks up the push and redeploys on its own. No dashboard visit needed.
 
 Entry format:
 
