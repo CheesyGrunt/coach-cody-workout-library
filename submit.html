@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Send a Practice — Coach Cody's Workout Library</title>
+<meta name="description" content="Send in a swim practice in any format. Handwritten, PDF, photo, screenshot. It gets formatted, tagged, and credited to you.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+header.hero{padding:52px 0 26px}
+main{padding-bottom:80px}
+section{margin-top:44px}
+h2{font-family:'Barlow Condensed';text-transform:uppercase;font-size:31px;letter-spacing:.02em;
+  margin:0 0 12px;font-weight:700;line-height:1.05}
+h2 span{color:var(--gold)}
+p.body{color:var(--mute);font-size:16px;line-height:1.75;max-width:66ch;margin:0 0 14px}
+p.body b{color:var(--foam)}
+
+/* format grid */
+.formats{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin-top:18px}
+.fmt{background:linear-gradient(180deg,var(--surface) 0%,var(--deep) 100%);
+  border:1px solid var(--line);border-radius:12px;padding:16px}
+.fmt b{display:block;font-family:'Barlow Condensed';font-size:19px;text-transform:uppercase;
+  letter-spacing:.04em;color:var(--gold);margin-bottom:5px}
+.fmt span{color:var(--mute);font-size:14px;line-height:1.55}
+
+/* credit block */
+.credit{background:linear-gradient(180deg,var(--surface) 0%,var(--deep) 100%);
+  border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:12px;
+  padding:22px 24px;margin-top:18px}
+.credit .demo{background:var(--ink);border:1px solid var(--line);border-radius:10px;
+  padding:15px 17px;margin-top:14px}
+.credit .demo .dt{font-family:'Barlow Condensed';font-size:22px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.01em}
+.credit .demo .dm{font-family:'JetBrains Mono';font-size:12px;color:var(--mute);margin-top:5px}
+.credit .demo .dby{margin-top:9px;font-size:14px;color:var(--gold);font-weight:600}
+
+/* checklist */
+.check{list-style:none;padding:0;margin:16px 0 0;max-width:66ch}
+.check li{position:relative;padding:9px 0 9px 32px;color:var(--mute);font-size:15.5px;
+  line-height:1.6;border-bottom:1px solid rgba(30,90,112,.5)}
+.check li:last-child{border-bottom:0}
+.check li::before{content:"";position:absolute;left:6px;top:16px;width:9px;height:9px;
+  border-radius:50%;background:var(--gold)}
+.check li b{color:var(--foam)}
+.check li i{font-style:normal;color:#7FA8B5;font-size:14px}
+
+/* send box */
+.sendbox{background:linear-gradient(180deg,var(--surface2) 0%,var(--deep) 100%);
+  border:1px solid var(--gold);border-radius:14px;padding:26px;margin-top:20px}
+.sendbox h3{font-family:'Barlow Condensed';text-transform:uppercase;letter-spacing:.06em;
+  font-size:22px;margin:0 0 6px;font-weight:700}
+.sendbox p{color:var(--mute);font-size:14.5px;line-height:1.6;margin:0 0 16px;max-width:60ch}
+.addr{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.addr code{flex:1;min-width:200px;background:var(--ink);border:1px solid var(--line);
+  border-radius:10px;padding:14px 16px;font-family:'JetBrains Mono';font-size:16px;
+  color:var(--foam);user-select:all;word-break:break-all}
+.copybtn{font-family:'Barlow Condensed';font-weight:600;font-size:15px;letter-spacing:.07em;
+  text-transform:uppercase;padding:13px 17px;border-radius:10px;cursor:pointer;white-space:nowrap;
+  border:1px solid var(--line);background:transparent;color:var(--foam);transition:.15s;
+  text-decoration:none;display:inline-block}
+.copybtn:hover{border-color:var(--gold);color:var(--gold)}
+.copybtn.done{background:var(--go);border-color:var(--go);color:#06251e}
+.tmpl{width:100%;min-height:200px;background:var(--ink);border:1px solid var(--line);
+  border-radius:10px;padding:14px;color:#D6ECEF;font-family:'JetBrains Mono';font-size:12.5px;
+  line-height:1.7;outline:none;resize:vertical;margin-top:16px}
+.tmpl:focus{border-color:var(--gold)}
+.sendrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;align-items:center}
+.sendrow .or{color:var(--mute);font-size:14px}
+.nomail{color:var(--coral);font-size:15px;line-height:1.6}
+</style>
+</head>
+<body>
+
+<div class="rope"></div>
+<nav class="topnav"><div class="wrap">
+  <a href="index.html">The Library</a>
+  <a href="coaches.html">New Coaches</a>
+  <a href="submit.html" class="on">Send a Practice</a>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <p class="eyebrow">Coach Cody&#39;s Library</p>
+  <h1>Send me a<br><span>practice</span></h1>
+  <p class="tag">However it exists right now is how you should send it. I&#39;ll handle the rest.</p>
+</div></header>
+
+<main class="wrap">
+
+<section>
+  <h2>Any format. <span>I mean it.</span></h2>
+  <p class="body">You don&#39;t need to type it up. You don&#39;t need to clean it up. You don&#39;t need to make it match anything on this site. That&#39;s my job &mdash; I&#39;ll read it, format it, tag it by energy system, and slot it into the library.</p>
+  <div class="formats">
+    <div class="fmt"><b>Notebook photo</b><span>Snap the page on your phone. Handwriting is fine. Mine&#39;s worse.</span></div>
+    <div class="fmt"><b>PDF or Word</b><span>Attach it as-is. No need to convert anything.</span></div>
+    <div class="fmt"><b>Screenshot</b><span>From TeamUnify, Commit, a group text, wherever it lives.</span></div>
+    <div class="fmt"><b>Whiteboard photo</b><span>Before you wipe it. Genuinely the most common one I get.</span></div>
+    <div class="fmt"><b>Plain text</b><span>Paste it in the email body. No formatting required.</span></div>
+    <div class="fmt"><b>A doc link</b><span>Google Doc, Drive folder, Dropbox. Just make sure I can open it.</span></div>
+  </div>
+</section>
+
+<section>
+  <h2>Your name goes <span>on it</span></h2>
+  <p class="body">Every practice in the library carries the coach who wrote it. Not buried in a footnote &mdash; on the card, where anyone running your set can see it.</p>
+  <div class="credit">
+    <p class="body" style="margin:0">Here&#39;s what it looks like once it&#39;s in:</p>
+    <div class="demo">
+      <div class="dt">Thursday LCM &mdash; Race Pace</div>
+      <div class="dm">LCM &middot; 2,900 Meters &middot; Race Pace / Broken</div>
+      <div class="dby">Written by Coach Sarah Whitfield, Riverside Swim Club</div>
+    </div>
+    <p class="body" style="margin:14px 0 0">Tell me how you want to be credited &mdash; full name, first name, club, or nothing at all. If you&#39;d rather stay anonymous, say so and it goes in unattributed. Your call, every time.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Helpful, but <span>not required</span></h2>
+  <p class="body">Send it either way. These just save me a round of emails asking:</p>
+  <ul class="check">
+    <li><b>Course</b> &mdash; short course yards, short course meters, or long course meters. <i>This one matters most. The same set is a different workout in a 50m pool.</i></li>
+    <li><b>Group or ability level</b> &mdash; 11-12s, senior group, whoever it was written for.</li>
+    <li><b>Total distance</b> &mdash; if you know it. I can add it up if you don&#39;t.</li>
+    <li><b>How it actually ran</b> &mdash; what worked, what you&#39;d change, where kids fell off the interval. This is the good stuff and almost nobody sends it.</li>
+    <li><b>How to credit you</b> &mdash; name, club, or anonymous.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Send it <span>here</span></h2>
+  <div class="sendbox">
+    <h3>Email me</h3>
+    <p>Attach whatever you&#39;ve got, or paste the set into the body. There&#39;s a template below if you want the structure &mdash; ignore it if you don&#39;t.</p>
+    <div id="mailArea">
+      <div class="addr">
+        <code id="sendAddr"></code>
+        <button class="copybtn" id="copyAddr">Copy address</button>
+      </div>
+      <textarea class="tmpl" id="sendTmpl" spellcheck="false" readonly></textarea>
+      <div class="sendrow">
+        <button class="copybtn" id="copyTmpl">Copy the template</button>
+        <span class="or">or</span>
+        <a class="copybtn" id="openMail" href="#">Open in your mail app</a>
+      </div>
+    </div>
+  </div>
+  <p class="body" style="margin-top:18px">Not sure whether your set is worth sending? It is. Send it.</p>
+</section>
+
+<section>
+  <div class="rope thin"></div>
+  <p class="body" style="margin-top:26px">New to coaching and not ready to send anything yet? <a href="coaches.html" style="color:var(--gold)">Start over here instead</a> &mdash; that page walks through the shorthand and how a practice is put together.</p>
+</section>
+
+</main>
+
+<footer><div class="wrap">
+  Maintained by <span id="footcoach">a coach</span> &middot;
+  <a href="index.html">The library</a> &middot;
+  <a href="coaches.html">New coaches</a>
+</div></footer>
+
+<script src="config.js"></script>
+<script>
+(function(){
+  const C = window.WORKOUT_CONFIG || {};
+  const email = (C.coachEmail || '').trim();
+  const name  = C.coachName || 'the coach';
+
+  const coach = document.getElementById('footcoach');
+  if (coach) coach.textContent = name;
+
+  const TEMPLATE =
+    'Credit it to:\n\n' +
+    'Course (SCY / SCM / LCM):\n\n' +
+    'Group or ability level:\n\n' +
+    'Total distance:\n\n' +
+    'The practice:\n' +
+    '(paste it here, or just attach a photo / PDF / screenshot)\n\n\n' +
+    'How it ran / anything I should know:';
+
+  const valid = email && email.indexOf('@') > 0 && !/example\.com$/i.test(email);
+
+  if (!valid) {
+    document.getElementById('mailArea').innerHTML =
+      '<p class="nomail">The email address hasn\u2019t been set up yet. ' +
+      'Set <code>coachEmail</code> in <code>config.js</code> and push.</p>';
+    return;
+  }
+
+  document.getElementById('sendAddr').textContent = email;
+  document.getElementById('sendTmpl').value = TEMPLATE;
+  document.getElementById('openMail').href = 'mailto:' + email +
+    '?subject=' + encodeURIComponent('Practice for the library') +
+    '&body=' + encodeURIComponent(TEMPLATE);
+
+  function flash(el, msg){
+    const old = el.textContent;
+    el.textContent = msg; el.classList.add('done');
+    setTimeout(function(){ el.textContent = old; el.classList.remove('done'); }, 1600);
+  }
+  function legacy(text, el, msg){
+    const ta = document.createElement('textarea');
+    ta.value = text; ta.style.position='fixed'; ta.style.opacity='0';
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); flash(el, msg); }
+    catch(e){ flash(el, 'Select it and copy'); }
+    ta.remove();
+  }
+  function copy(text, el, msg){
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function(){ flash(el, msg); })
+        .catch(function(){ legacy(text, el, msg); });
+    } else { legacy(text, el, msg); }
+  }
+
+  document.getElementById('copyAddr').onclick = function(){ copy(email, this, 'Copied'); };
+  document.getElementById('copyTmpl').onclick = function(){ copy(TEMPLATE, this, 'Copied'); };
+})();
+</script>
+</body>
+</html>

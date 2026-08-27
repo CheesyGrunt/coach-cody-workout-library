@@ -42,6 +42,9 @@ Every practice keeps credit to whoever wrote it.
 | `data/workouts.json` | The source of truth. 473 practices. Edit this to add or fix one. |
 | `data/workouts.js` | Generated from the JSON — this is what the page loads. |
 | `tools/build-data.py` | Regenerates `workouts.js` after you edit the JSON. |
+| `coaches.html` | **New Coaches** — welcome, glossary, how a practice is built. |
+| `submit.html` | **Send a Practice** — any format, credited to the coach. |
+| `style.css` | Shared styles across all pages, including the lane rope. |
 | `admin.html` | **Deck Pass** — the tool for turning raw practices into library entries. |
 | `render.yaml` | Tells Render how to serve the site. You shouldn't need to touch it. |
 
@@ -54,8 +57,8 @@ Every practice keeps credit to whoever wrote it.
 ```js
 window.WORKOUT_CONFIG = {
   coachName: "Coach Cody",
-  coachEmail: "you@example.com",
-  repoUrl: "https://github.com/YOUR-USERNAME/coach-cody-workout-library"
+  coachEmail: "cody.a.mackall@gmail.com",
+  adminPassphrase: "your-passphrase"
 };
 ```
 

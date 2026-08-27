@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>New Coaches — Coach Cody's Workout Library</title>
+<meta name="description" content="Welcome to coaching. What the shorthand on a swim practice means, how a workout is built, and where to start on your first day on deck.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+header.hero{padding:52px 0 26px}
+main{padding-bottom:80px}
+section{margin-top:52px;scroll-margin-top:20px}
+h2{font-family:'Barlow Condensed';text-transform:uppercase;font-size:33px;letter-spacing:.02em;
+  margin:0 0 14px;font-weight:700;line-height:1.05}
+h2 span{color:var(--gold)}
+h3{font-family:'Barlow Condensed';text-transform:uppercase;font-size:19px;letter-spacing:.09em;
+  color:var(--gold);margin:26px 0 8px;font-weight:700}
+p.body{color:var(--mute);font-size:16px;line-height:1.78;max-width:68ch;margin:0 0 15px}
+p.body b{color:var(--foam)}
+p.body em{color:#BFDDE5;font-style:italic}
+
+/* jump links */
+.jump{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
+.jump a{font-family:'Barlow Condensed';font-size:14px;letter-spacing:.08em;text-transform:uppercase;
+  font-weight:600;color:var(--mute);text-decoration:none;border:1px solid var(--line);
+  border-radius:999px;padding:8px 15px;transition:.15s}
+.jump a:hover{border-color:var(--gold);color:var(--gold)}
+
+/* anatomy */
+.anatomy{background:linear-gradient(180deg,var(--surface) 0%,var(--deep) 100%);
+  border:1px solid var(--line);border-radius:14px;padding:8px 20px 20px;margin-top:20px}
+.step{display:grid;grid-template-columns:118px 1fr;gap:18px;padding:16px 0;
+  border-bottom:1px solid rgba(30,90,112,.55);align-items:start}
+.step:last-child{border-bottom:0}
+@media(max-width:620px){.step{grid-template-columns:1fr;gap:5px}}
+.step .lab{font-family:'Barlow Condensed';font-size:17px;font-weight:700;letter-spacing:.05em;
+  text-transform:uppercase;color:var(--gold);padding-top:2px}
+.step .lab small{display:block;font-family:'JetBrains Mono';font-size:11px;letter-spacing:0;
+  color:var(--mute);text-transform:none;font-weight:500;margin-top:3px}
+.step .txt{color:var(--mute);font-size:15px;line-height:1.65}
+.step .txt b{color:var(--foam)}
+
+/* glossary */
+.gloss{margin-top:18px}
+.gcat{font-family:'Barlow Condensed';font-size:15px;letter-spacing:.16em;text-transform:uppercase;
+  color:#7FA8B5;font-weight:600;margin:26px 0 10px;padding-bottom:7px;
+  border-bottom:1px solid rgba(30,90,112,.7)}
+.gcat:first-child{margin-top:0}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(285px,1fr));gap:10px}
+.g{background:var(--ink);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.g dt{font-family:'JetBrains Mono';font-size:13.5px;color:var(--gold);font-weight:500;margin:0}
+.g dd{margin:5px 0 0;color:var(--mute);font-size:14px;line-height:1.6}
+.g dd em{color:#BFDDE5;font-style:normal}
+
+/* first practice */
+.fp{counter-reset:fp;list-style:none;padding:0;margin:18px 0 0;max-width:70ch}
+.fp li{counter-increment:fp;position:relative;padding:14px 0 14px 46px;
+  border-bottom:1px solid rgba(30,90,112,.5);color:var(--mute);font-size:15.5px;line-height:1.68}
+.fp li:last-child{border-bottom:0}
+.fp li::before{content:counter(fp);position:absolute;left:0;top:14px;width:29px;height:29px;
+  border-radius:50%;background:var(--gold);color:#1a1300;font-family:'Barlow Condensed';
+  font-weight:700;font-size:16px;display:flex;align-items:center;justify-content:center}
+.fp li b{color:var(--foam)}
+
+/* ask box */
+.ask{background:linear-gradient(180deg,var(--surface2) 0%,var(--deep) 100%);
+  border:1px solid var(--gold);border-radius:14px;padding:26px;margin-top:20px}
+.ask h3{margin-top:0;font-size:23px;letter-spacing:.04em}
+.ask p{color:var(--mute);font-size:15.5px;line-height:1.7;margin:0 0 14px;max-width:64ch}
+.ask p b{color:var(--foam)}
+.addr{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:6px}
+.addr code{flex:1;min-width:200px;background:var(--ink);border:1px solid var(--line);
+  border-radius:10px;padding:14px 16px;font-family:'JetBrains Mono';font-size:16px;
+  color:var(--foam);user-select:all;word-break:break-all}
+.copybtn{font-family:'Barlow Condensed';font-weight:600;font-size:15px;letter-spacing:.07em;
+  text-transform:uppercase;padding:13px 17px;border-radius:10px;cursor:pointer;white-space:nowrap;
+  border:1px solid var(--line);background:transparent;color:var(--foam);transition:.15s;
+  text-decoration:none;display:inline-block}
+.copybtn:hover{border-color:var(--gold);color:var(--gold)}
+.copybtn.done{background:var(--go);border-color:var(--go);color:#06251e}
+.nomail{color:var(--coral);font-size:15px;line-height:1.6}
+.pull{border-left:4px solid var(--gold);padding:4px 0 4px 20px;margin:22px 0;
+  font-size:18px;line-height:1.65;color:var(--foam);max-width:60ch}
+</style>
+</head>
+<body>
+
+<div class="rope"></div>
+<nav class="topnav"><div class="wrap">
+  <a href="index.html">The Library</a>
+  <a href="coaches.html" class="on">New Coaches</a>
+  <a href="submit.html">Send a Practice</a>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <p class="eyebrow">Coach Cody&#39;s Library</p>
+  <h1>Welcome to<br><span>coaching</span></h1>
+  <p class="tag">Nobody hands you a manual. You get a whistle, a lane, and a group of kids looking at you like you know what happens next. This page is the thing I wish somebody had given me.</p>
+  <div class="jump">
+    <a href="#truth">Start here</a>
+    <a href="#anatomy">How a practice is built</a>
+    <a href="#shorthand">The shorthand</a>
+    <a href="#first">Your first practice</a>
+    <a href="#ask">Ask me anything</a>
+  </div>
+</div></header>
+
+<main class="wrap">
+
+<section id="truth">
+  <h2>The part nobody <span>says out loud</span></h2>
+  <p class="body">Every coach you look up to was, at some point, standing on a wet deck with no idea what to write on the board. That&#39;s not imposter syndrome. That&#39;s the actual starting line, and everybody crosses it.</p>
+  <p class="body">The good news is that swimming is a craft with a shape to it. Practices aren&#39;t invented from nothing &mdash; they follow patterns, and once you can see the patterns you can build your own. That&#39;s what the 473 practices in this library are for. Not to run word-for-word forever, but to <b>show you the shape</b> until you can draw it yourself.</p>
+  <div class="pull">You will write a bad practice. Probably in your first month. The kids survive it, you learn what didn&#39;t work, and you write a better one Thursday. That&#39;s the job.</div>
+</section>
+
+<section id="anatomy">
+  <h2>How a practice is <span>built</span></h2>
+  <p class="body">Almost every workout in this library follows the same skeleton. Learn this and you can read any practice on the site &mdash; or any practice a coach hands you.</p>
+  <div class="anatomy">
+    <div class="step">
+      <div class="lab">Warm-Up<small>500&ndash;800</small></div>
+      <div class="txt">Get blood moving and shoulders loose. Nothing hard. This is also where you find out who slept and who didn&#39;t. <b>Vary it</b> &mdash; a warm-up that never changes is a warm-up nobody thinks about.</div>
+    </div>
+    <div class="step">
+      <div class="lab">Kick<small>400&ndash;800</small></div>
+      <div class="txt">Legs are the engine and the first thing to quit in a race. Board, streamline, vertical, social &mdash; rotate it so it doesn&#39;t become a chore they mail in.</div>
+    </div>
+    <div class="step">
+      <div class="lab">Skill / Pre<small>300&ndash;600</small></div>
+      <div class="txt">Drills, sculling, underwaters, turns. Do this <b>before</b> they&#39;re tired. Technique taught to an exhausted swimmer doesn&#39;t stick.</div>
+    </div>
+    <div class="step">
+      <div class="lab">Main Set<small>1000&ndash;2000</small></div>
+      <div class="txt">The point of the day. Everything above this is preparation for it. If you only plan one thing well, plan this. It should have a clear job &mdash; aerobic, race pace, speed &mdash; not a little of everything.</div>
+    </div>
+    <div class="step">
+      <div class="lab">Pull<small>300&ndash;600</small></div>
+      <div class="txt">Buoy, sometimes paddles. Gives the legs a break while the arms keep working. Good spot for breathing patterns.</div>
+    </div>
+    <div class="step">
+      <div class="lab">Blocks / Cool Down<small>200&ndash;400</small></div>
+      <div class="txt">Starts and relay takeovers if you&#39;ve got time, then easy swimming. <b>Never skip the cool down.</b> It&#39;s where the hard work gets absorbed, and it&#39;s the last thing they remember about practice.</div>
+    </div>
+  </div>
+  <p class="body" style="margin-top:16px">Add it up and a solid hour-long age group practice lands around <b>2,800&ndash;3,000 meters</b>. If your plan says 6,000, you&#39;ve written a two-hour practice.</p>
+</section>
+
+<section id="shorthand">
+  <h2>The <span>shorthand</span></h2>
+  <p class="body">Swim practices are written in a dialect. None of it is complicated once somebody translates it &mdash; but nobody ever does, so here.</p>
+
+  <div class="gloss">
+
+    <div class="gcat">Reading a set</div>
+    <div class="grid2">
+      <dl class="g"><dt>8&times;100 @ 1:30</dt><dd>Eight one-hundreds, leaving every minute thirty. Swim it in 1:20 and you get ten seconds rest. Swim it in 1:29 and you get one. <em>The interval controls the difficulty, not the distance.</em></dd></dl>
+      <dl class="g"><dt>SCY / SCM / LCM</dt><dd>Short course yards (25y), short course meters (25m), long course meters (50m). <em>The single most important label on a practice.</em> Long course has half the walls, so the same set is far harder.</dd></dl>
+      <dl class="g"><dt>A / B / C</dt><dd>Interval columns by lane speed. A is your fastest group, C is your developing group. Same set, different clocks.</dd></dl>
+      <dl class="g"><dt>Descend 1&ndash;4</dt><dd>Each one faster than the last. Number four is the fastest. <em>Descend means the times go down, not the effort.</em></dd></dl>
+      <dl class="g"><dt>Build</dt><dd>Get faster <em>within</em> a single swim. Start easy at the wall, finish fast at the other end.</dd></dl>
+      <dl class="g"><dt>Negative split</dt><dd>Second half faster than the first. Teaches pacing better than almost anything else you can do.</dd></dl>
+      <dl class="g"><dt>Broken swim</dt><dd>A race distance cut into pieces with short rest &mdash; a 200 as 4&times;50 on :10 rest. Lets them feel race speed before they can hold it straight through.</dd></dl>
+      <dl class="g"><dt>O / E</dt><dd>Odds and evens. &ldquo;O: free, E: stroke&rdquo; means alternate every other rep.</dd></dl>
+    </div>
+
+    <div class="gcat">Strokes and order</div>
+    <div class="grid2">
+      <dl class="g"><dt>FR / BK / BR / FL</dt><dd>Free, back, breast, fly.</dd></dl>
+      <dl class="g"><dt>IM</dt><dd>Individual medley. All four strokes, in order: fly, back, breast, free.</dd></dl>
+      <dl class="g"><dt>IMO</dt><dd>IM order. A set done fly, then back, then breast, then free &mdash; usually one round each.</dd></dl>
+      <dl class="g"><dt>CH</dt><dd>Choice. Swimmer picks the stroke.</dd></dl>
+      <dl class="g"><dt>KDS</dt><dd>Kick, drill, swim. Usually 25 of each inside a 75.</dd></dl>
+    </div>
+
+    <div class="gcat">Underwaters and walls</div>
+    <div class="grid2">
+      <dl class="g"><dt>UW</dt><dd>Underwater. The stretch off the wall before they surface &mdash; often the fastest part of the whole race.</dd></dl>
+      <dl class="g"><dt>DK / DKOB</dt><dd>Dolphin kick / dolphin kick on back.</dd></dl>
+      <dl class="g"><dt>Breakout</dt><dd>The first stroke coming out of the underwater. Timing it well is worth more than most swimmers realize.</dd></dl>
+      <dl class="g"><dt>Streamline / Position 11</dt><dd>Hands stacked, arms locked behind the ears, body long and quiet. Position 11 is the same idea with arms shoulder-width &mdash; reaching through the lats.</dd></dl>
+      <dl class="g"><dt>The 15</dt><dd>Fifteen meters. The legal limit for staying underwater off a wall or start. Past it and it&#39;s a DQ.</dd></dl>
+      <dl class="g"><dt>No-breath breakout</dt><dd>No breathing on the first stroke or two out of the wall. Uncomfortable, and exactly what races require.</dd></dl>
+    </div>
+
+    <div class="gcat">Effort and energy</div>
+    <div class="grid2">
+      <dl class="g"><dt>Aerobic / EN1</dt><dd>Comfortable, sustainable, conversational-ish. Builds the base everything else sits on.</dd></dl>
+      <dl class="g"><dt>Threshold / EN2</dt><dd>Comfortably hard. The fastest pace they could hold for a long time. This is where fitness gets built.</dd></dl>
+      <dl class="g"><dt>VO2 max</dt><dd>Hard, short, real rest. Trains the top end of the aerobic system. Should hurt, with form still intact.</dd></dl>
+      <dl class="g"><dt>Race pace</dt><dd>Exactly the speed of their goal race. Not faster, not slower. Teaches the body what the race feels like.</dd></dl>
+      <dl class="g"><dt>SP1&ndash;SP5</dt><dd>Speed zones, easy to all-out. SP5 is a full sprint with full rest.</dd></dl>
+      <dl class="g"><dt>DPS</dt><dd>Distance per stroke. Cover more water with each pull. &ldquo;DPS&nbsp;&minus;&nbsp;1&rdquo; means do it in one fewer stroke than usual.</dd></dl>
+      <dl class="g"><dt>Hypoxic</dt><dd>Restricted breathing &mdash; every 3, 5, 7 strokes. <em>Use it sparingly and watch them closely.</em> Nobody does breath-holding alone or on the bottom.</dd></dl>
+    </div>
+
+    <div class="gcat">Season words</div>
+    <div class="grid2">
+      <dl class="g"><dt>Base</dt><dd>Early season. Volume, aerobic work, technique. Building the engine.</dd></dl>
+      <dl class="g"><dt>Build</dt><dd>Mid season. Intensity climbs, volume holds. Race-specific work enters.</dd></dl>
+      <dl class="g"><dt>Taper</dt><dd>Final weeks. Volume drops hard, speed stays sharp. The rest is where the fitness finally shows up.</dd></dl>
+      <dl class="g"><dt>Test set</dt><dd>A repeated benchmark set. Run it every few weeks &mdash; same set, same conditions &mdash; and you can prove progress instead of guessing.</dd></dl>
+    </div>
+
+  </div>
+</section>
+
+<section id="first">
+  <h2>Your first practice on <span>deck</span></h2>
+  <p class="body">Pick one from the library that matches your course and time, and run it. Here&#39;s how to not make it harder than it is:</p>
+  <ol class="fp">
+    <li><b>Filter to your course first.</b> SCY, SCM, or LCM &mdash; up top on the library page. Running a short course practice in a long course pool is the fastest way to have a bad day.</li>
+    <li><b>Read it all the way through before you get on deck.</b> Out loud, if that helps. You want to already know what comes after the main set when a kid asks.</li>
+    <li><b>Write it on the board before they get in.</b> Whole practice, not one set at a time. Swimmers who can see where they&#39;re going pace themselves better and ask fewer questions.</li>
+    <li><b>Pick intervals you can loosen.</b> If half the lane is missing the send-off, add five seconds. Nobody gets faster failing an interval for forty minutes.</li>
+    <li><b>Explain the <em>why</em> of the main set in one sentence.</b> &ldquo;This is about holding your 200 pace when you&#39;re tired.&rdquo; That&#39;s it. Kids work harder when the set has a point.</li>
+    <li><b>Watch one thing.</b> Not everything &mdash; one thing. Walls, or breakouts, or stroke count. Fix that. Next practice, watch something else.</li>
+    <li><b>Cool them down and end on time.</b> Both matter more than you&#39;d think, and both build trust with swimmers and with parents in the lobby.</li>
+  </ol>
+  <p class="body" style="margin-top:18px">If you want a starting point and don&#39;t want to choose, the library has a <a href="index.html" style="color:var(--gold)">&ldquo;Pick one for me&rdquo;</a> button. Filter to your course, hit it, run what comes up.</p>
+</section>
+
+<section id="ask">
+  <h2>Ask me <span>anything</span></h2>
+  <div class="ask">
+    <h3>Seriously &mdash; anything</h3>
+    <p>Not sure whether a set is right for your group? Don&#39;t know what a term means? Got a kid you can&#39;t figure out how to reach? Wrote a practice and want a second set of eyes before you run it? <b>Send it.</b> There are no dumb questions in a sport with this much jargon.</p>
+    <p>I answer every one. It might take me a day or two &mdash; I&#39;m on a deck too &mdash; but I answer.</p>
+    <div id="mailArea">
+      <div class="addr">
+        <code id="sendAddr"></code>
+        <button class="copybtn" id="copyAddr">Copy address</button>
+      </div>
+      <div class="addr" style="margin-top:10px">
+        <a class="copybtn" id="openMail" href="#">Open in your mail app</a>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:34px">Want me on your deck?</h3>
+  <p class="body">If you&#39;re close enough and the timing works, I&#39;m open to coming out &mdash; running a practice, watching your group and giving you honest feedback, or sitting down and mapping out a season with you. Reach out and let&#39;s see what we can work out. No promises on distance or dates, but I&#39;d rather you ask than assume the answer is no.</p>
+</section>
+
+<section>
+  <div class="rope thin"></div>
+  <p class="body" style="margin-top:26px">Got a practice of your own? <a href="submit.html" style="color:var(--gold)">Send it in</a> &mdash; any format, and your name goes on it.</p>
+</section>
+
+</main>
+
+<footer><div class="wrap">
+  Maintained by <span id="footcoach">a coach</span> &middot;
+  <a href="index.html">The library</a> &middot;
+  <a href="submit.html">Send a practice</a>
+</div></footer>
+
+<script src="config.js"></script>
+<script>
+(function(){
+  const C = window.WORKOUT_CONFIG || {};
+  const email = (C.coachEmail || '').trim();
+  const coach = document.getElementById('footcoach');
+  if (coach) coach.textContent = C.coachName || 'the coach';
+
+  const valid = email && email.indexOf('@') > 0 && !/example\.com$/i.test(email);
+  if (!valid) {
+    document.getElementById('mailArea').innerHTML =
+      '<p class="nomail">The email address hasn\u2019t been set up yet. ' +
+      'Set <code>coachEmail</code> in <code>config.js</code> and push.</p>';
+    return;
+  }
+
+  document.getElementById('sendAddr').textContent = email;
+  document.getElementById('openMail').href = 'mailto:' + email +
+    '?subject=' + encodeURIComponent('Question from a new coach');
+
+  function flash(el, msg){
+    const old = el.textContent;
+    el.textContent = msg; el.classList.add('done');
+    setTimeout(function(){ el.textContent = old; el.classList.remove('done'); }, 1600);
+  }
+  function legacy(text, el, msg){
+    const ta = document.createElement('textarea');
+    ta.value = text; ta.style.position='fixed'; ta.style.opacity='0';
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); flash(el, msg); }
+    catch(e){ flash(el, 'Select it and copy'); }
+    ta.remove();
+  }
+  document.getElementById('copyAddr').onclick = function(){
+    const el = this;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(email).then(function(){ flash(el,'Copied'); })
+        .catch(function(){ legacy(email, el, 'Copied'); });
+    } else { legacy(email, el, 'Copied'); }
+  };
+})();
+</script>
+</body>
+</html>

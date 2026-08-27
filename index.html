@@ -12,6 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 <style>
 :root{
   --ink:#07171F; --deep:#0C2A37; --surface:#11394A; --surface2:#16465A;
@@ -27,9 +28,6 @@ body{margin:0;background:
 .wrap{max-width:1160px;margin:0 auto;padding:0 20px}
 
 /* lane line rope */
-.rope{height:8px;border-radius:8px;background:repeating-linear-gradient(90deg,
-  var(--lane1) 0 26px, var(--lane2) 26px 34px, var(--lane3) 34px 60px);
-  opacity:.85;margin:0}
 
 header.hero{padding:56px 0 28px}
 .eyebrow{font-family:'Barlow Condensed';letter-spacing:.28em;text-transform:uppercase;
@@ -97,7 +95,6 @@ h1 span{color:var(--gold)}
   font-family:'Barlow Condensed';font-weight:600;letter-spacing:.1em;text-transform:uppercase;
   font-size:13px;cursor:pointer;padding:0}
 .empty{color:var(--mute);text-align:center;padding:60px 0;font-size:16px}
-footer{border-top:1px solid var(--line);padding:26px 0 50px;color:var(--mute);font-size:13px}
 @media(max-width:560px){.stats{gap:20px}.grid{grid-template-columns:1fr}}
 
 /* --- contribute / CTA --- */
@@ -114,8 +111,6 @@ footer{border-top:1px solid var(--line);padding:26px 0 50px;color:var(--mute);fo
   letter-spacing:.02em;margin:0 0 10px;font-weight:700}
 .contribute h2 span{color:var(--gold)}
 .contribute p{color:var(--mute);max-width:62ch;margin:0 0 6px;font-size:15px;line-height:1.6}
-footer a{color:var(--gold);text-decoration:none}
-footer a:hover{text-decoration:underline}
 
 /* --- swim flourishes --- */
 .creed{font-family:'Barlow Condensed';font-weight:600;letter-spacing:.16em;text-transform:uppercase;
@@ -135,32 +130,31 @@ footer a:hover{text-decoration:underline}
 .card.picked{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold), 0 12px 34px rgba(0,0,0,.45)}
 @media (prefers-reduced-motion: reduce){.card{transition:none}}
 
-/* --- send panel --- */
-.sendpanel{display:none;margin-top:18px;background:var(--surface);border:1px solid var(--line);
-  border-radius:12px;padding:18px}
-.sendpanel.open{display:block}
-.sendpanel h3{font-family:'Barlow Condensed';text-transform:uppercase;letter-spacing:.08em;
-  font-size:16px;margin:0 0 4px;color:var(--gold);font-weight:700}
-.sendpanel .lead{color:var(--mute);font-size:13.5px;margin:0 0 14px;line-height:1.6}
-.addr{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-bottom:16px}
-.addr code{flex:1;min-width:190px;background:var(--ink);border:1px solid var(--line);border-radius:9px;
-  padding:12px 14px;font-family:'JetBrains Mono';font-size:15px;color:var(--foam);
-  user-select:all;word-break:break-all}
-.copybtn{font-family:'Barlow Condensed';font-weight:600;font-size:14px;letter-spacing:.07em;
-  text-transform:uppercase;padding:11px 15px;border-radius:9px;cursor:pointer;white-space:nowrap;
-  border:1px solid var(--line);background:transparent;color:var(--foam);transition:.15s}
-.copybtn:hover{border-color:var(--gold);color:var(--gold)}
-.copybtn.done{background:#36C9A8;border-color:#36C9A8;color:#06251e}
-.tmpl{width:100%;min-height:190px;background:var(--ink);border:1px solid var(--line);border-radius:9px;
-  padding:12px;color:#D6ECEF;font-family:'JetBrains Mono';font-size:12.5px;line-height:1.65;
-  outline:none;resize:vertical}
-.tmpl:focus{border-color:var(--gold)}
-.sendrow{display:flex;gap:9px;flex-wrap:wrap;margin-top:12px;align-items:center}
-.sendrow .or{color:var(--mute);font-size:13px}
+
+/* --- two-up nav cards --- */
+.contribute{border-top:0;margin-top:20px;padding:10px 0 10px}
+.twoup{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding-bottom:10px}
+@media(max-width:760px){.twoup{grid-template-columns:1fr}}
+.bigcard{display:flex;flex-direction:column;gap:7px;text-decoration:none;padding:24px;
+  background:linear-gradient(180deg,var(--surface) 0%,var(--deep) 100%);
+  border:1px solid var(--line);border-radius:14px;transition:.16s}
+.bigcard:hover{border-color:var(--gold);transform:translateY(-2px)}
+.bigcard .bk{font-family:'Barlow Condensed';font-size:13px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--gold);font-weight:600}
+.bigcard b{font-family:'Barlow Condensed';font-size:29px;line-height:1.05;
+  text-transform:uppercase;letter-spacing:.01em;color:var(--foam);font-weight:700}
+.bigcard .bd{color:var(--mute);font-size:14.5px;line-height:1.6}
+.bigcard .bgo{font-family:'Barlow Condensed';font-size:15px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--gold);font-weight:600;margin-top:4px}
 </style>
 </head>
 <body>
 <div class="rope"></div>
+<nav class="topnav"><div class="wrap">
+  <a href="index.html" class="on">The Library</a>
+  <a href="coaches.html">New Coaches</a>
+  <a href="submit.html">Send a Practice</a>
+</div></nav>
 <header class="hero"><div class="wrap">
   <p class="eyebrow">Coach Cody&#39;s</p>
   <h1>Workout<br><span>Library</span></h1>
@@ -170,8 +164,8 @@ footer a:hover{text-decoration:underline}
   <p class="creed" id="creed"></p>
   <div class="stats" id="stats"></div>
   <div class="ctarow">
-    <a class="cta primary" id="submitTop" href="#contribute">＋ Send me a practice</a>
-    <a class="cta ghost" id="repoTop" href="#" target="_blank" rel="noopener">View on GitHub</a>
+    <a class="cta primary" href="submit.html">＋ Send me a practice</a>
+    <a class="cta ghost" href="coaches.html">New to coaching? Start here</a>
   </div>
 </div></header>
 
@@ -198,33 +192,26 @@ footer a:hover{text-decoration:underline}
 </main>
 
 <section class="contribute" id="contribute"><div class="wrap">
-  <h2>New coach? <span>Start here.</span></h2>
-  <p>Every practice in here is free to run. Pick one that matches your day, adjust the intervals to your group, take it to the deck. That&rsquo;s the whole point &mdash; nobody should have to invent 473 workouts to figure out how a season is built.</p><p>And if you&rsquo;ve got a set worth sharing, send it. Typed, handwritten and photographed, a PDF, a screenshot, whatever you&rsquo;ve got. I&rsquo;ll format it, tag it, and it goes in the library with credit to you.</p>
-  <p>No format required. If it works on deck, it works here. Questions about why a set is built the way it is are welcome too &mdash; that&rsquo;s how you learn this.</p>
-  <div class="ctarow">
-    <button class="cta primary" id="submitMail">✉ Email me a practice</button>
-    <a class="cta ghost" id="submitIssue" href="#" target="_blank" rel="noopener">Submit on GitHub</a>
-  </div>
-
-  <div class="sendpanel" id="sendPanel">
-    <h3>Send it here</h3>
-    <p class="lead">Attach a photo, PDF, or screenshot &mdash; or paste the set straight into the body. Nothing below is required, it just saves me a round of questions.</p>
-    <div class="addr">
-      <code id="sendAddr"></code>
-      <button class="copybtn" id="copyAddr">Copy address</button>
-    </div>
-    <textarea class="tmpl" id="sendTmpl" spellcheck="false" readonly></textarea>
-    <div class="sendrow">
-      <button class="copybtn" id="copyTmpl">Copy the template</button>
-      <span class="or">or</span>
-      <a class="copybtn" id="openMail" href="#" style="text-decoration:none;display:inline-block">Open in your mail app</a>
-    </div>
+  <div class="rope thin" style="margin-bottom:34px"></div>
+  <div class="twoup">
+    <a class="bigcard" href="coaches.html">
+      <span class="bk">New to this?</span>
+      <b>Welcome to coaching</b>
+      <span class="bd">What the shorthand means, how a practice is put together, and what to do with your first hour on deck.</span>
+      <span class="bgo">Start here &rarr;</span>
+    </a>
+    <a class="bigcard" href="submit.html">
+      <span class="bk">Got a set?</span>
+      <b>Send me a practice</b>
+      <span class="bd">Any format. Napkin, notebook photo, PDF, screenshot. I&rsquo;ll do the formatting and put your name on it.</span>
+      <span class="bgo">How to send it &rarr;</span>
+    </a>
   </div>
 </div></section>
 
 <footer><div class="wrap">
   <span id="footcount"></span> practices · SCY / SCM / LCM · Interval columns A (fast) / B (mid) / C (slow)<br>
-  Maintained by <span id="footcoach">a coach</span> · <a href="#contribute">Add a practice</a> · <a id="footrepo" href="#" target="_blank" rel="noopener">Source on GitHub</a> · <a href="admin.html">Deck Pass</a>
+  Maintained by <span id="footcoach">a coach</span> · <a href="submit.html">Send a practice</a> · <a href="coaches.html">New coaches</a> · <a href="admin.html">Deck Pass</a>
 </div></footer>
 
 <script src="config.js"></script>
@@ -362,103 +349,13 @@ render();
   };
 })();
 
-/* ---------- contribute links (values come from config.js) ---------- */
+/* ---------- footer values from config.js ---------- */
 (function(){
   const C = window.WORKOUT_CONFIG || {};
-  const name  = C.coachName  || 'the coach';
-  const email = (C.coachEmail || '').trim();
-  const repo  = (C.repoUrl || '').trim();
-
   const fc = document.getElementById('footcount');
   if (fc) fc.textContent = DATA.workouts.length;
-
   const coach = document.getElementById('footcoach');
-  if (coach) coach.textContent = name;
-
-  const issue = document.getElementById('submitIssue');
-  const repoTop = document.getElementById('repoTop');
-  const footrepo = document.getElementById('footrepo');
-  if (repo && !/YOUR-USERNAME/.test(repo)) {
-    if (issue) issue.href = repo.replace(/\/$/,'') + '/issues/new?template=submit-workout.yml';
-    if (repoTop) repoTop.href = repo;
-    if (footrepo) footrepo.href = repo;
-  } else {
-    [issue, repoTop, footrepo].forEach(function(el){ if (el) el.style.display='none'; });
-  }
-
-  /* ----- send panel ----- */
-  const TEMPLATE =
-    'Coach / team:\n\n' +
-    'Course (SCY / SCM / LCM):\n\n' +
-    'Group or ability level:\n\n' +
-    'Total distance:\n\n' +
-    'Practice:\n' +
-    '(paste it, or attach a photo / PDF / screenshot - handwritten is fine)\n\n\n' +
-    'Anything I should know about how it ran:\n\n' +
-    'Credit it to:';
-
-  const btn    = document.getElementById('submitMail');
-  const panel  = document.getElementById('sendPanel');
-  const addrEl = document.getElementById('sendAddr');
-  const tmplEl = document.getElementById('sendTmpl');
-  const openEl = document.getElementById('openMail');
-
-  const valid = email && email.indexOf('@') > 0 && !/example\.com$/i.test(email);
-
-  if (!valid) {
-    // No usable address configured - say so instead of failing silently.
-    if (btn) {
-      btn.textContent = 'Email not set up yet';
-      btn.disabled = true;
-      btn.style.opacity = '.5';
-      btn.style.cursor = 'not-allowed';
-      btn.title = 'Set coachEmail in config.js';
-    }
-    return;
-  }
-
-  if (addrEl) addrEl.textContent = email;
-  if (tmplEl) tmplEl.value = TEMPLATE;
-  if (openEl) openEl.href = 'mailto:' + email +
-    '?subject=' + encodeURIComponent("Practice for Coach Cody's library") +
-    '&body=' + encodeURIComponent(TEMPLATE);
-
-  function flash(el, msg){
-    const old = el.textContent;
-    el.textContent = msg; el.classList.add('done');
-    setTimeout(function(){ el.textContent = old; el.classList.remove('done'); }, 1600);
-  }
-
-  function copy(text, el, msg){
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(text).then(function(){ flash(el, msg); })
-        .catch(function(){ legacy(text, el, msg); });
-    } else { legacy(text, el, msg); }
-  }
-  function legacy(text, el, msg){
-    const ta = document.createElement('textarea');
-    ta.value = text; ta.style.position='fixed'; ta.style.opacity='0';
-    document.body.appendChild(ta); ta.select();
-    try { document.execCommand('copy'); flash(el, msg); }
-    catch(e){ flash(el, 'Select it and copy'); }
-    ta.remove();
-  }
-
-  if (btn && panel) {
-    btn.onclick = function(){
-      panel.classList.toggle('open');
-      if (panel.classList.contains('open')) {
-        try { panel.scrollIntoView({behavior:'smooth', block:'nearest'}); } catch(e){}
-      }
-    };
-  }
-  const ca = document.getElementById('copyAddr');
-  if (ca) ca.onclick = function(){ copy(email, ca, 'Copied'); };
-  const ct = document.getElementById('copyTmpl');
-  if (ct) ct.onclick = function(){ copy(TEMPLATE, ct, 'Copied'); };
-
-  const top = document.getElementById('submitTop');
-  if (top) top.onclick = function(){ setTimeout(function(){ panel.classList.add('open'); }, 400); };
+  if (coach) coach.textContent = C.coachName || 'the coach';
 })();
 </script>
 </body>
