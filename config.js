@@ -15,6 +15,6 @@ window.WORKOUT_CONFIG = {
   // This is a doorknob, not a deadbolt - anyone can read this file.
   // It's fine: that page can't change the live library, only your
   // own commits can. See the README.
-  adminPassphrase: "CHANGE-THIS"
+  adminPassphrase: "CMackal11!"
 
 };
