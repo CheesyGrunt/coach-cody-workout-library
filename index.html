@@ -116,6 +116,24 @@ footer{border-top:1px solid var(--line);padding:26px 0 50px;color:var(--mute);fo
 .contribute p{color:var(--mute);max-width:62ch;margin:0 0 6px;font-size:15px;line-height:1.6}
 footer a{color:var(--gold);text-decoration:none}
 footer a:hover{text-decoration:underline}
+
+/* --- swim flourishes --- */
+.creed{font-family:'Barlow Condensed';font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  font-size:15px;color:var(--foam);margin:18px 0 0;min-height:20px}
+.creed span{color:var(--gold)}
+.stat.total .n{color:var(--gold)}
+.card{transition:transform .16s ease, border-color .16s ease}
+.card:hover{transform:translateY(-2px);border-color:#2C7994}
+.empty{color:var(--mute);text-align:center;padding:56px 20px;font-size:16px;line-height:1.7}
+.empty .spell{display:block;font-family:'Barlow Condensed';font-size:26px;letter-spacing:.05em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.empty .sub{display:block;font-size:14px;margin-top:10px;color:var(--mute)}
+#lucky{background:transparent;color:var(--foam);border:1px solid var(--line);border-radius:10px;
+  padding:11px 15px;font-family:'Barlow Condensed';font-weight:600;font-size:15px;
+  letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:.15s;white-space:nowrap}
+#lucky:hover{border-color:var(--gold);color:var(--gold)}
+.card.picked{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold), 0 12px 34px rgba(0,0,0,.45)}
+@media (prefers-reduced-motion: reduce){.card{transition:none}}
 </style>
 </head>
 <body>
@@ -126,6 +144,7 @@ footer a:hover{text-decoration:underline}
   <p class="tag">473 practices, free to take. Started for the newer coaches getting their feet wet &mdash; the ones staring at an empty whiteboard at 5:15 in the morning wondering what a good set actually looks like.</p>
   <p class="tag">Filter by energy system, filter by course, or search any set, drill, or distance. Steal what works. Change what doesn&#39;t.</p>
   <p class="tag" style="margin-top:10px;font-size:14px"><b style="color:var(--gold)">Interval columns:</b> A = fast &middot; B = mid &middot; C = slow</p>
+  <p class="creed" id="creed"></p>
   <div class="stats" id="stats"></div>
   <div class="ctarow">
     <a class="cta primary" id="submitTop" href="#contribute">＋ Send me a practice</a>
@@ -140,6 +159,7 @@ footer a:hover{text-decoration:underline}
       <input id="q" type="search" placeholder="Search sets, drills, distances…" autocomplete="off">
     </label>
     <div class="course-seg" id="courses"></div>
+    <button id="lucky" title="Pull a random practice">✨ Pick one for me</button>
   </div>
   <div class="pills" id="pills"></div>
 </div></div>
@@ -147,7 +167,11 @@ footer a:hover{text-decoration:underline}
 <main class="wrap">
   <p class="count" id="count"></p>
   <div class="grid" id="grid"></div>
-  <p class="empty" id="empty" style="display:none">No practices match that filter. Loosen it up.</p>
+  <p class="empty" id="empty" style="display:none">
+    <span class="spell">I solemnly swear there is no such set.</span>
+    Nothing in the library matches that. Loosen a filter or try a different word.
+    <span class="sub">Mischief managed.</span>
+  </p>
 </main>
 
 <section class="contribute" id="contribute"><div class="wrap">
@@ -162,7 +186,7 @@ footer a:hover{text-decoration:underline}
 
 <footer><div class="wrap">
   <span id="footcount"></span> practices · SCY / SCM / LCM · Interval columns A (fast) / B (mid) / C (slow)<br>
-  Maintained by <span id="footcoach">a coach</span> · <a href="#contribute">Add a practice</a> · <a id="footrepo" href="#" target="_blank" rel="noopener">Source on GitHub</a>
+  Maintained by <span id="footcoach">a coach</span> · <a href="#contribute">Add a practice</a> · <a id="footrepo" href="#" target="_blank" rel="noopener">Source on GitHub</a> · <a href="admin.html">Deck Pass</a>
 </div></footer>
 
 <script src="config.js"></script>
@@ -178,13 +202,23 @@ let fType='All', fCourse='All', fQ='';
 
 const stats=document.getElementById('stats');
 const courseCounts={SCY:0,SCM:0,LCM:0};
-DATA.workouts.forEach(w=>{if(courseCounts[w.course]!=null)courseCounts[w.course]++});
+let distSum=0;
+DATA.workouts.forEach(w=>{
+  if(courseCounts[w.course]!=null)courseCounts[w.course]++;
+  const n=parseInt(String(w.dist||'').replace(/[^\d]/g,''),10);
+  if(n && n < 12000) distSum += n;
+});
+const totalDist = distSum >= 1000000
+  ? (distSum/1000000).toFixed(1).replace(/\.0$/,'') + 'M'
+  : Math.round(distSum/1000) + 'K';
+const distUnitLabel = 'Total distance';
 stats.innerHTML=`
  <div class="stat"><div class="n">${DATA.workouts.length}</div><div class="l">Practices</div></div>
  <div class="stat"><div class="n">${DATA.types.length}</div><div class="l">Types</div></div>
  <div class="stat"><div class="n">${courseCounts.SCY}</div><div class="l">SCY</div></div>
  <div class="stat"><div class="n">${courseCounts.SCM}</div><div class="l">SCM</div></div>
- <div class="stat"><div class="n">${courseCounts.LCM}</div><div class="l">LCM</div></div>`;
+ <div class="stat"><div class="n">${courseCounts.LCM}</div><div class="l">LCM</div></div>
+ <div class="stat total"><div class="n">${totalDist}</div><div class="l">${distUnitLabel}</div></div>`;
 
 // course segment
 const courses=document.getElementById('courses');
@@ -248,6 +282,47 @@ function render(){
 }
 function esc(s){return (s||'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]))}
 render();
+
+/* ---------- the creed: coach lines on rotation ---------- */
+(function(){
+  const el = document.getElementById('creed');
+  if (!el) return;
+  const lines = [
+    'Choose your <span>hard</span>.',
+    'Be your <span>best</span> today.',
+    'Lead by <span>example</span>.',
+    'Control what you <span>can</span>.',
+    'Better today than <span>yesterday</span>.',
+    'Build new <span>skills</span>.',
+    'Take <span>initiative</span>.'
+  ];
+  let i = Math.floor(Math.random() * lines.length);
+  el.innerHTML = lines[i];
+  let reduce = false;
+  try { reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch(e){}
+  if (reduce) return;
+  el.style.transition = 'opacity .5s';
+  setInterval(() => {
+    el.style.opacity = '0';
+    setTimeout(() => { i = (i + 1) % lines.length; el.innerHTML = lines[i]; el.style.opacity = '1'; }, 500);
+  }, 6000);
+})();
+
+/* ---------- pick one for me ---------- */
+(function(){
+  const btn = document.getElementById('lucky');
+  if (!btn) return;
+  btn.onclick = () => {
+    const cards = [...grid.querySelectorAll('.card')];
+    if (!cards.length) return;
+    const pick = cards[Math.floor(Math.random() * cards.length)];
+    grid.querySelectorAll('.card.picked').forEach(c => c.classList.remove('picked'));
+    pick.classList.add('picked');
+    const more = pick.querySelector('.more');
+    if (more && more.style.display !== 'none' && /Show full/.test(more.textContent)) more.click();
+    try { pick.scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch(e){}
+  };
+})();
 
 /* ---------- contribute links (values come from config.js) ---------- */
 (function(){

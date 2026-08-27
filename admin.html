@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Deck Pass — Coach Cody's Workout Library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#07171F; --deep:#0C2A37; --surface:#11394A; --surface2:#16465A;
+  --line:#1E5A70; --foam:#EAF6F6; --mute:#9DC4CE; --gold:#FFC53D; --coral:#FF6B6B;
+  --lane1:#0E83C9; --lane2:#FFFFFF; --lane3:#E2403B; --go:#36C9A8;
+}
+*{box-sizing:border-box}
+body{margin:0;background:
+  radial-gradient(1200px 600px at 80% -10%, #103a4d 0%, transparent 60%),
+  linear-gradient(180deg,#07171F 0%, #0A2330 100%);
+  color:var(--foam);font-family:Inter,system-ui,sans-serif;min-height:100vh}
+.wrap{max-width:1240px;margin:0 auto;padding:0 20px}
+.rope{height:8px;border-radius:8px;background:repeating-linear-gradient(90deg,
+  var(--lane1) 0 26px, var(--lane2) 26px 34px, var(--lane3) 34px 60px);opacity:.85}
+
+header.hero{padding:34px 0 20px}
+.eyebrow{font-family:'Barlow Condensed';letter-spacing:.28em;text-transform:uppercase;
+  font-weight:600;color:var(--gold);font-size:13px;margin:0 0 8px}
+h1{font-family:'Barlow Condensed';font-weight:700;font-size:clamp(32px,5vw,52px);
+  line-height:.95;margin:0;letter-spacing:.01em;text-transform:uppercase}
+h1 span{color:var(--gold)}
+.tag{font-size:15px;color:var(--mute);margin:12px 0 0;max-width:70ch;line-height:1.6}
+.tag a{color:var(--gold)}
+
+/* gate */
+#gate{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(180deg,#07171F 0%,#0A2330 100%);padding:20px}
+.gatebox{max-width:400px;width:100%;text-align:center}
+.gatebox h2{font-family:'Barlow Condensed';text-transform:uppercase;font-size:34px;margin:14px 0 6px;letter-spacing:.02em}
+.gatebox p{color:var(--mute);font-size:14px;margin:0 0 20px;line-height:1.6}
+.gatebox input{width:100%;background:var(--surface);border:1px solid var(--line);border-radius:10px;
+  padding:13px 15px;color:var(--foam);font-size:16px;font-family:Inter;outline:none;text-align:center}
+.gatebox input:focus{border-color:var(--gold)}
+.gateerr{color:var(--coral);font-size:13px;margin-top:10px;min-height:18px}
+
+/* layout */
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:22px;padding-bottom:70px;align-items:start}
+@media(max-width:900px){.cols{grid-template-columns:1fr}}
+.panel{background:linear-gradient(180deg,var(--surface) 0%,var(--deep) 100%);
+  border:1px solid var(--line);border-radius:14px;padding:18px}
+.panel h2{font-family:'Barlow Condensed';text-transform:uppercase;font-size:20px;
+  letter-spacing:.08em;margin:0 0 4px;font-weight:700}
+.panel h2 .n{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;
+  border-radius:50%;background:var(--gold);color:#1a1300;font-size:13px;margin-right:9px;vertical-align:2px}
+.hint{color:var(--mute);font-size:13px;margin:0 0 14px;line-height:1.55}
+
+/* drop */
+.drop{border:2px dashed var(--line);border-radius:12px;padding:22px;text-align:center;
+  transition:.15s;cursor:pointer;margin-bottom:12px}
+.drop:hover,.drop.over{border-color:var(--gold);background:rgba(255,197,61,.06)}
+.drop b{color:var(--gold);font-family:'Barlow Condensed';font-size:17px;letter-spacing:.06em;text-transform:uppercase}
+.drop small{display:block;color:var(--mute);font-size:12px;margin-top:5px}
+textarea{width:100%;min-height:260px;background:var(--ink);border:1px solid var(--line);
+  border-radius:10px;padding:13px;color:var(--foam);font-family:'JetBrains Mono',monospace;
+  font-size:12.5px;line-height:1.6;outline:none;resize:vertical}
+textarea:focus{border-color:var(--gold)}
+
+/* form */
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.f{display:flex;flex-direction:column;gap:5px}
+.f.wide{grid-column:1 / -1}
+label{font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--mute);font-weight:600}
+input[type=text],select{background:var(--ink);border:1px solid var(--line);border-radius:8px;
+  padding:9px 11px;color:var(--foam);font-size:14px;font-family:Inter;outline:none;width:100%}
+input[type=text]:focus,select:focus{border-color:var(--gold)}
+.auto{color:var(--go);font-size:11px;letter-spacing:.06em}
+
+.btn{font-family:'Barlow Condensed';font-weight:600;font-size:16px;letter-spacing:.06em;
+  text-transform:uppercase;padding:11px 18px;border-radius:10px;cursor:pointer;
+  border:1px solid var(--line);background:transparent;color:var(--foam);transition:.15s}
+.btn:hover:not(:disabled){border-color:var(--gold);color:var(--gold)}
+.btn.primary{background:var(--gold);color:#1a1300;border-color:var(--gold)}
+.btn.primary:hover:not(:disabled){filter:brightness(1.08);color:#1a1300}
+.btn.go{background:var(--go);color:#06251e;border-color:var(--go)}
+.btn.go:hover:not(:disabled){filter:brightness(1.08);color:#06251e}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btnrow{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}
+
+/* preview card */
+.card{background:linear-gradient(180deg,var(--surface2) 0%,var(--deep) 100%);
+  border:1px solid var(--line);border-radius:14px;padding:16px;position:relative;overflow:hidden;margin-top:12px}
+.card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--bar,var(--gold))}
+.ctop{display:flex;justify-content:space-between;gap:10px;margin-bottom:8px}
+.badge{font-family:'Barlow Condensed';font-weight:600;font-size:12px;letter-spacing:.08em;
+  text-transform:uppercase;padding:4px 10px;border-radius:999px;color:#0b1a20}
+.chip{font-family:'JetBrains Mono';font-size:11px;color:var(--mute);border:1px solid var(--line);
+  border-radius:999px;padding:3px 9px;height:fit-content}
+.ctitle{font-family:'Barlow Condensed';font-size:21px;font-weight:700;margin:0 0 6px;line-height:1.15}
+.meta{display:flex;gap:14px;color:var(--mute);font-size:12px;margin-bottom:10px;flex-wrap:wrap}
+.meta b{color:var(--foam)}
+.sets{font-size:13.5px;line-height:1.6;max-height:280px;overflow:auto}
+.sets .h{font-family:'Barlow Condensed';font-weight:700;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--gold);margin:11px 0 3px;font-size:14px}
+.sets .h:first-child{margin-top:0}
+.sets .l{color:#D6ECEF;padding-left:2px}
+
+/* queue */
+.q{display:flex;align-items:center;gap:11px;padding:10px 12px;border:1px solid var(--line);
+  border-radius:10px;margin-bottom:8px;background:var(--ink)}
+.qbar{width:4px;align-self:stretch;border-radius:2px;flex:none}
+.qmain{flex:1;min-width:0}
+.qtitle{font-weight:600;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.qmeta{color:var(--mute);font-size:12px;font-family:'JetBrains Mono';margin-top:2px}
+.qdel{background:none;border:0;color:var(--mute);cursor:pointer;font-size:19px;line-height:1;padding:4px 6px}
+.qdel:hover{color:var(--coral)}
+.qempty{color:var(--mute);font-size:14px;text-align:center;padding:26px 10px;line-height:1.6}
+
+.note{background:rgba(54,201,168,.09);border:1px solid rgba(54,201,168,.35);border-radius:10px;
+  padding:12px 14px;font-size:13px;line-height:1.6;color:#CFEFE8;margin-top:14px}
+.note b{color:var(--go)}
+.warn{background:rgba(255,107,107,.09);border-color:rgba(255,107,107,.35);color:#FBD9D9}
+.warn b{color:var(--coral)}
+.steps{margin:10px 0 0;padding-left:19px;color:var(--mute);font-size:13px;line-height:1.75}
+.steps code{background:var(--ink);border:1px solid var(--line);border-radius:5px;padding:1px 6px;
+  font-family:'JetBrains Mono';font-size:11.5px;color:var(--gold)}
+footer{border-top:1px solid var(--line);padding:22px 0 44px;color:var(--mute);font-size:13px}
+footer a{color:var(--gold);text-decoration:none}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<div id="gate">
+  <div class="gatebox">
+    <div class="rope" style="margin-bottom:26px"></div>
+    <p class="eyebrow">Coach Cody's Library</p>
+    <h2>Deck <span style="color:var(--gold)">Pass</span></h2>
+    <p>Coaches' entrance. Nothing you do here touches the live library until you push it yourself.</p>
+    <input id="gateInput" type="password" placeholder="Passphrase" autocomplete="off">
+    <div class="gateerr" id="gateErr"></div>
+    <div style="margin-top:6px"><button class="btn primary" id="gateBtn" style="width:100%">Open</button></div>
+  </div>
+</div>
+
+<div class="rope"></div>
+<header class="hero"><div class="wrap">
+  <p class="eyebrow">Coach Cody's Library</p>
+  <h1>Deck <span>Pass</span></h1>
+  <p class="tag">Paste a practice or drop a file. This reads it, guesses the type, course and distance, and turns it into a library entry. Fix anything it got wrong, add it to the stack, then export when you're done.</p>
+  <p class="tag" style="font-size:13.5px"><b style="color:var(--gold)">Nothing here writes to the live site.</b> Export downloads two files to your computer. The library only changes when you commit and push them.</p>
+</div></header>
+
+<main class="wrap">
+<div class="cols">
+
+  <div>
+    <div class="panel">
+      <h2><span class="n">1</span>Drop it in</h2>
+      <p class="hint">Text files, markdown, or straight paste. For a PDF or a photo of a notebook page, copy the text out and paste it here.</p>
+      <div class="drop" id="drop">
+        <b>Drop a file</b>
+        <small>.txt · .md · .json — or click to browse</small>
+      </div>
+      <input type="file" id="file" accept=".txt,.md,.json,.csv" multiple hidden>
+      <textarea id="raw" spellcheck="false" placeholder="WARM UP&#10;400 Smooth — 3 UWs off every wall&#10;4x50 @ 1:00 — 25 drill / 25 swim&#10;&#10;KICK&#10;8x50 @ :55 — build within each&#10;&#10;MAIN&#10;8x100 @ 2:00 — Descend 1-4, hold 5-8&#10;A: 1:45 / B: 1:55 / C: 2:05&#10;&#10;COOL DOWN&#10;200 easy"></textarea>
+      <div class="btnrow">
+        <button class="btn primary" id="parseBtn">Read it</button>
+        <button class="btn" id="clearBtn">Clear</button>
+      </div>
+    </div>
+
+    <div class="panel" style="margin-top:18px">
+      <h2><span class="n">3</span>The stack</h2>
+      <p class="hint" id="stackHint">Nothing queued yet.</p>
+      <div id="queue"></div>
+      <div class="btnrow">
+        <button class="btn go" id="exportBtn" disabled>Export the library</button>
+        <button class="btn" id="wipeBtn" disabled>Empty the stack</button>
+      </div>
+      <div class="note" id="exportNote" style="display:none">
+        <b>Two files downloaded.</b> Drop both into your repo folder, replacing what's there, then:
+        <ol class="steps">
+          <li><code>workouts.json</code> and <code>workouts.js</code> both go in <code>data/</code></li>
+          <li><code>git add .</code></li>
+          <li><code>git commit -m "Add practices"</code></li>
+          <li><code>git push</code></li>
+        </ol>
+        Render redeploys on its own in about a minute.
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="panel">
+      <h2><span class="n">2</span>Check the read</h2>
+      <p class="hint">Green labels are guesses. Look them over — the parser is good, not psychic.</p>
+      <div class="frow">
+        <div class="f wide">
+          <label>Title</label>
+          <input type="text" id="fTitle" placeholder="Thursday LCM — Race Pace">
+        </div>
+        <div class="f">
+          <label>Type <span class="auto" id="aType"></span></label>
+          <select id="fType"></select>
+        </div>
+        <div class="f">
+          <label>Course <span class="auto" id="aCourse"></span></label>
+          <select id="fCourse">
+            <option value="SCY">SCY — 25 yards</option>
+            <option value="SCM">SCM — 25 meters</option>
+            <option value="LCM">LCM — 50 meters</option>
+          </select>
+        </div>
+        <div class="f">
+          <label>Distance <span class="auto" id="aDist"></span></label>
+          <input type="text" id="fDist" placeholder="2900">
+        </div>
+        <div class="f">
+          <label>Time on deck</label>
+          <input type="text" id="fDur" placeholder="60 min">
+        </div>
+        <div class="f">
+          <label>Credit to</label>
+          <input type="text" id="fSource" placeholder="Coach Smith, Riverside">
+        </div>
+        <div class="f">
+          <label>Base interval</label>
+          <input type="text" id="fInterval" placeholder="2:00 per 100">
+        </div>
+      </div>
+      <div class="btnrow">
+        <button class="btn go" id="addBtn" disabled>Add to the stack</button>
+      </div>
+      <div id="preview"></div>
+    </div>
+  </div>
+
+</div>
+</main>
+
+<footer><div class="wrap">
+  Deck Pass · <a href="index.html">Back to the library</a> · Changes go live only after you push.
+</div></footer>
+
+<script src="config.js"></script>
+<script src="data/workouts.js"></script>
+<script>
+/* ---------- gate ---------- */
+(function(){
+  const C = window.WORKOUT_CONFIG || {};
+  const pass = C.adminPassphrase || '';
+  const gate = document.getElementById('gate');
+  const key = 'deckpass-ok';
+
+  if (!pass || sessionStorage.getItem(key) === '1') { gate.remove(); return; }
+
+  function tryOpen(){
+    const v = document.getElementById('gateInput').value;
+    if (v === pass) { sessionStorage.setItem(key,'1'); gate.remove(); }
+    else { document.getElementById('gateErr').textContent = 'Not it. Try again.';
+           document.getElementById('gateInput').value=''; }
+  }
+  document.getElementById('gateBtn').onclick = tryOpen;
+  document.getElementById('gateInput').addEventListener('keydown', e=>{ if(e.key==='Enter') tryOpen(); });
+  document.getElementById('gateInput').focus();
+})();
+
+/* ---------- shared ---------- */
+const TYPES = (window.WORKOUT_DATA && window.WORKOUT_DATA.types) || [];
+const BAR = {
+ 'Aerobic / Base':'#36C9A8','Threshold / Endurance':'#5BB0FF','VO2 Max':'#B388FF',
+ 'Sprint / Speed-Power':'#FF6B6B','Race Pace / Broken':'#FF9F45','IM':'#FFC53D',
+ 'Kick':'#48D1C0','Pull / Recovery':'#8FD694','Underwater / Skills':'#4FC3F7',
+ 'Distance / Test':'#E0E0E0','Stroke-Specific':'#F48FB1','Themed / Holiday':'#FFD166'};
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+const sel = document.getElementById('fType');
+TYPES.forEach(t => { const o=document.createElement('option'); o.value=t; o.textContent=t; sel.appendChild(o); });
+
+/* ---------- parsing ---------- */
+const HEADWORDS = /^(warm[\s-]?up|warm[\s-]?down|w\/u|w\/d|cool[\s-]?down|kick|pull|main|pre|prep|pre[\s-]?set|main set|swim|drill|skill|sprint|finisher|finish|blocks|starts|turns|transitions|dive|set|round|rounds|\d+\s*(rds?|rounds?)|part\s*\d|block\s*\d|option\s*\d)\b/i;
+
+function isHeader(line){
+  const t = line.trim();
+  if (!t) return false;
+  if (t.length > 60) return false;
+  // "3 Rounds:" / "MAIN SET" / "Kick (800)"
+  if (/^\d+\s*(x|×)\s*\d/i.test(t)) return false;       // 4x50 is a set, not a header
+  if (/^\d+\s+\w/.test(t) && !/rounds?|rds?/i.test(t)) return false; // "400 swim"
+  if (HEADWORDS.test(t)) return true;
+  if (t === t.toUpperCase() && /[A-Z]{3}/.test(t) && !/[@:]/.test(t)) return true;
+  if (/:$/.test(t) && t.length < 40 && !/@/.test(t)) return true;
+  return false;
+}
+
+function toBlocks(text){
+  return text.split(/\r?\n/)
+    .map(l => l.replace(/\s+$/,''))
+    .filter(l => l.trim().length)
+    .map(l => [isHeader(l) ? 'h' : 'l', l.trim()]);
+}
+
+function guessCourse(text){
+  const t = text.toLowerCase();
+  if (/\blcm\b|50\s*met|long\s*course/.test(t)) return 'LCM';
+  if (/\bscm\b|25\s*met/.test(t)) return 'SCM';
+  if (/\bscy\b|25\s*yard|yds?\b/.test(t)) return 'SCY';
+  if (/\bmeters?\b/.test(t)) return 'SCM';
+  return 'SCY';
+}
+
+function guessType(text){
+  const t = text.toLowerCase();
+  const score = {};
+  const add=(k,n)=>score[k]=(score[k]||0)+n;
+  if (/race pace|broken|goal pace|200 pace|100 pace|from the blocks|from a dive/.test(t)) add('Race Pace / Broken',3);
+  if (/all out|sprint|max effort|speed|fast 25|blast/.test(t)) add('Sprint / Speed-Power',2);
+  if (/vo2|vo ?2|190\+/.test(t)) add('VO2 Max',3);
+  if (/threshold|en2|\bat\b pace|comfortably hard/.test(t)) add('Threshold / Endurance',3);
+  if (/\bim\b|im order|imo|individual medley|400 im|200 im/.test(t)) add('IM',2);
+  if (/\bkick\b/.test(t)) add('Kick', (t.match(/\bkick\b/g)||[]).length > 6 ? 3 : 1);
+  if (/\bpull\b|paddles|buoy/.test(t)) add('Pull / Recovery',1);
+  if (/underwater|\buw\b|dolphin kick|breakout|streamline|hypoxic|no breath/.test(t)) add('Underwater / Skills',2);
+  if (/for time|test set|1650|timed|baseline/.test(t)) add('Distance / Test',2);
+  if (/aerobic|smooth|steady|en1|base/.test(t)) add('Aerobic / Base',1);
+  if (/butterfly|breaststroke|backstroke|pullout|fly drill/.test(t)) add('Stroke-Specific',1);
+  if (/holiday|veterans|halloween|christmas|thanksgiving|birthday/.test(t)) add('Themed / Holiday',4);
+  const best = Object.entries(score).sort((a,b)=>b[1]-a[1])[0];
+  return best ? best[0] : 'Aerobic / Base';
+}
+
+function guessDistance(text){
+  // an explicit total wins
+  const tot = text.match(/(?:total|session total)\s*[:\-]?\s*~?\s*([\d,]{3,6})/i);
+  if (tot) return parseInt(tot[1].replace(/,/g,''),10);
+
+  let sum = 0;
+  text.split(/\r?\n/).forEach(line => {
+    if (/^\s*(total|adj|adjustment)/i.test(line)) return;
+    // 4x50, 4 x 50, 8×100
+    let m = line.match(/(\d{1,2})\s*[x×]\s*(\d{2,4})\b/);
+    if (m) { sum += parseInt(m[1],10) * parseInt(m[2],10); return; }
+    // leading distance: "400 Smooth", "1x400", "200 easy"
+    m = line.match(/^\s*(?:1\s*[x×]\s*)?(\d{2,4})\s*(?:m|yds?|meters?|yards?)?\s*[A-Za-z(]/);
+    if (m) { const v = parseInt(m[1],10); if (v >= 25 && v <= 2000 && v % 25 === 0) sum += v; }
+  });
+  return sum;
+}
+
+function guessInterval(text){
+  const m = text.match(/(\d:\d{2})\s*(?:per|\/)\s*100/i);
+  return m ? m[1] + ' per 100' : '';
+}
+
+function guessTitle(text, blocks){
+  const first = text.split(/\r?\n/).find(l=>l.trim());
+  if (first && first.trim().length < 55 && !isHeader(first)) return first.trim();
+  const h = blocks.find(b=>b[0]==='h');
+  return h ? h[1].replace(/[:(].*$/,'').trim() : '';
+}
+
+/* ---------- state ---------- */
+let current = null;
+const QKEY = 'deckpass-queue';
+let queue = [];
+try { queue = JSON.parse(localStorage.getItem(QKEY) || '[]'); } catch(e){ queue = []; }
+
+function saveQueue(){ try{ localStorage.setItem(QKEY, JSON.stringify(queue)); }catch(e){} }
+
+/* ---------- parse action ---------- */
+function readIt(){
+  const text = document.getElementById('raw').value;
+  if (!text.trim()) return;
+
+  const blocks = toBlocks(text);
+  const course = guessCourse(text);
+  const dist = guessDistance(text);
+  const type = guessType(text);
+  const iv = guessInterval(text);
+
+  document.getElementById('fTitle').value = guessTitle(text, blocks);
+  document.getElementById('fType').value = type;
+  document.getElementById('fCourse').value = course;
+  document.getElementById('fDist').value = dist || '';
+  document.getElementById('fInterval').value = iv;
+
+  document.getElementById('aType').textContent = 'guessed';
+  document.getElementById('aCourse').textContent = 'guessed';
+  document.getElementById('aDist').textContent = dist ? 'added up' : 'couldn\u2019t tell';
+
+  current = { blocks };
+  document.getElementById('addBtn').disabled = false;
+  renderPreview();
+}
+
+function build(){
+  const course = document.getElementById('fCourse').value;
+  const unit = course === 'SCY' ? 'Yards' : 'Meters';
+  const rawDist = document.getElementById('fDist').value.trim();
+  const distNum = parseInt(rawDist.replace(/[^\d]/g,''),10);
+  return {
+    id: 0,
+    title: document.getElementById('fTitle').value.trim() || 'Untitled practice',
+    type: document.getElementById('fType').value,
+    tags: [],
+    course,
+    dist: distNum ? distNum + ' ' + unit : '',
+    dur: document.getElementById('fDur').value.trim() || null,
+    stress: distNum ? String(Math.round(distNum / 33)) : '',
+    interval: document.getElementById('fInterval').value.trim() || null,
+    source: document.getElementById('fSource').value.trim() || 'coaches_shared',
+    blocks: current ? current.blocks : []
+  };
+}
+
+function renderPreview(){
+  if (!current) { document.getElementById('preview').innerHTML=''; return; }
+  const w = build();
+  const bar = BAR[w.type] || '#FFC53D';
+  const sets = w.blocks.map(b =>
+    b[0]==='h' ? `<div class="h">${esc(b[1])}</div>` : `<div class="l">${esc(b[1])}</div>`).join('');
+  const meta = [];
+  if (w.dist) meta.push(`<span><b>${esc(w.dist)}</b></span>`);
+  if (w.dur) meta.push(`<span>${esc(w.dur)}</span>`);
+  if (w.stress) meta.push(`<span>stress ${esc(w.stress)}</span>`);
+  document.getElementById('preview').innerHTML = `
+    <div class="card" style="--bar:${bar}">
+      <div class="ctop">
+        <span class="badge" style="background:${bar}">${esc(w.type)}</span>
+        <span class="chip">${esc(w.course)}</span>
+      </div>
+      <div class="ctitle">${esc(w.title)}</div>
+      ${meta.length?`<div class="meta">${meta.join('')}</div>`:''}
+      <div class="sets">${sets}</div>
+    </div>`;
+}
+
+['fTitle','fType','fCourse','fDist','fDur','fInterval','fSource'].forEach(id=>{
+  document.getElementById(id).addEventListener('input', renderPreview);
+  document.getElementById(id).addEventListener('change', renderPreview);
+});
+
+/* ---------- queue ---------- */
+function renderQueue(){
+  const el = document.getElementById('queue');
+  const hint = document.getElementById('stackHint');
+  document.getElementById('exportBtn').disabled = queue.length === 0;
+  document.getElementById('wipeBtn').disabled = queue.length === 0;
+
+  if (!queue.length){
+    el.innerHTML = `<div class="qempty">Nothing queued yet.<br>Read a practice and it lands here.</div>`;
+    hint.textContent = 'Nothing queued yet.';
+    return;
+  }
+  const total = queue.reduce((n,w)=> n + (parseInt(w.dist,10)||0), 0);
+  hint.textContent = `${queue.length} practice${queue.length>1?'s':''} ready · ${total.toLocaleString()} total`;
+  el.innerHTML = queue.map((w,i)=>`
+    <div class="q">
+      <div class="qbar" style="background:${BAR[w.type]||'#FFC53D'}"></div>
+      <div class="qmain">
+        <div class="qtitle">${esc(w.title)}</div>
+        <div class="qmeta">${esc(w.course)} · ${esc(w.dist||'—')} · ${esc(w.type)}</div>
+      </div>
+      <button class="qdel" data-i="${i}" title="Remove">&times;</button>
+    </div>`).join('');
+  el.querySelectorAll('.qdel').forEach(b=>{
+    b.onclick = () => { queue.splice(parseInt(b.dataset.i,10),1); saveQueue(); renderQueue(); };
+  });
+}
+
+document.getElementById('addBtn').onclick = () => {
+  if (!current) return;
+  queue.push(build());
+  saveQueue(); renderQueue();
+  document.getElementById('raw').value='';
+  ['fTitle','fDist','fDur'].forEach(id=>document.getElementById(id).value='');
+  ['aType','aCourse','aDist'].forEach(id=>document.getElementById(id).textContent='');
+  current = null;
+  document.getElementById('addBtn').disabled = true;
+  document.getElementById('preview').innerHTML='';
+  document.getElementById('raw').focus();
+};
+
+document.getElementById('wipeBtn').onclick = () => {
+  if (!confirm('Empty the stack? Anything not exported is gone.')) return;
+  queue = []; saveQueue(); renderQueue();
+  document.getElementById('exportNote').style.display='none';
+};
+
+/* ---------- export ---------- */
+function download(name, text){
+  const b = new Blob([text], {type:'text/plain'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(b); a.download = name;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(()=>{ try{ URL.revokeObjectURL(a.href); }catch(e){} }, 2000);
+}
+
+document.getElementById('exportBtn').onclick = () => {
+  const data = JSON.parse(JSON.stringify(window.WORKOUT_DATA));
+  data.workouts = data.workouts.concat(JSON.parse(JSON.stringify(queue)));
+  data.workouts.forEach((w,i)=> w.id = i+1);
+  data.meta = data.meta || {};
+  data.meta.count = data.workouts.length;
+  data.meta.sources = [...new Set(data.workouts.map(w=>w.source||'unknown'))].sort();
+
+  download('workouts.json', JSON.stringify(data, null, 1));
+  download('workouts.js',
+    "/* Coach Cody's Workout Library - data file.\n" +
+    "   Generated by Deck Pass. Do not edit by hand. */\n" +
+    "window.WORKOUT_DATA = " + JSON.stringify(data) + ";\n");
+
+  document.getElementById('exportNote').style.display='';
+  document.getElementById('exportNote').scrollIntoView({behavior:'smooth', block:'nearest'});
+};
+
+/* ---------- file drop ---------- */
+const drop = document.getElementById('drop');
+const fileIn = document.getElementById('file');
+drop.onclick = () => fileIn.click();
+drop.addEventListener('dragover', e=>{ e.preventDefault(); drop.classList.add('over'); });
+drop.addEventListener('dragleave', ()=> drop.classList.remove('over'));
+drop.addEventListener('drop', e=>{
+  e.preventDefault(); drop.classList.remove('over');
+  handleFiles(e.dataTransfer.files);
+});
+fileIn.onchange = () => handleFiles(fileIn.files);
+
+function handleFiles(files){
+  if (!files || !files.length) return;
+  const f = files[0];
+  if (/\.(pdf|png|jpe?g|docx?)$/i.test(f.name)){
+    alert("Can't read " + f.name.split('.').pop().toUpperCase() +
+          " files here. Open it, copy the text, and paste it into the box instead.");
+    return;
+  }
+  const r = new FileReader();
+  r.onload = () => {
+    if (/\.json$/i.test(f.name)){
+      try {
+        const j = JSON.parse(r.result);
+        const list = Array.isArray(j) ? j : (j.workouts || []);
+        if (!list.length) throw new Error('no workouts');
+        list.forEach(w => queue.push(w));
+        saveQueue(); renderQueue();
+        alert('Queued ' + list.length + ' practices from ' + f.name + '.');
+      } catch(e){ alert("That JSON didn't have a workouts array in it."); }
+      return;
+    }
+    document.getElementById('raw').value = r.result;
+    readIt();
+  };
+  r.readAsText(f);
+}
+
+document.getElementById('parseBtn').onclick = readIt;
+document.getElementById('clearBtn').onclick = () => {
+  document.getElementById('raw').value='';
+  document.getElementById('preview').innerHTML='';
+  current=null; document.getElementById('addBtn').disabled=true;
+};
+
+renderQueue();
+</script>
+</body>
+</html>

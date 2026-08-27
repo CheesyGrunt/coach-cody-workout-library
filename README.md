@@ -42,6 +42,7 @@ Every practice keeps credit to whoever wrote it.
 | `data/workouts.json` | The source of truth. 473 practices. Edit this to add or fix one. |
 | `data/workouts.js` | Generated from the JSON — this is what the page loads. |
 | `tools/build-data.py` | Regenerates `workouts.js` after you edit the JSON. |
+| `admin.html` | **Deck Pass** — the tool for turning raw practices into library entries. |
 | `render.yaml` | Tells Render how to serve the site. You shouldn't need to touch it. |
 
 ---
@@ -89,6 +90,33 @@ Click **Create Static Site**. First deploy takes about a minute.
 Your URL shows at the top of the service page: `https://coach-cody-workout-library.onrender.com`. That's the link you share.
 
 Every push to `main` from here on redeploys automatically.
+
+---
+
+## Deck Pass — adding practices without touching JSON
+
+`admin.html` on the live site (or open it locally). Passphrase is set in `config.js`.
+
+1. **Paste or drop** a practice — plain text, markdown, or a `.json` file. For PDFs and photos, copy the text out and paste it.
+2. **Read it.** The parser splits headers from set lines, guesses the type from the language, reads the course, and adds up the distance from every `4x50` and `400 swim` it finds.
+3. **Fix the guesses.** Green "guessed" labels mark anything the parser decided on its own. There's a live card preview so you see exactly what lands in the library.
+4. **Add to the stack.** Queue as many as you want — the stack survives closing the tab.
+5. **Export.** Downloads `workouts.json` and `workouts.js`. Drop both into `data/`, then commit and push.
+
+**On the passphrase:** it's a doorknob, not a deadbolt. Anyone can read `config.js`. That's fine, and here's why — Deck Pass has no server behind it. It reads files on *your* computer and writes files to *your* downloads folder. Someone who finds the page and guesses the passphrase can generate a JSON file for themselves. They cannot touch your library. The only thing that changes what's live is a push from you.
+
+---
+
+## Locking down the repo
+
+The library should be yours to edit and everyone else's to read. Public repo, but nobody pushes but you.
+
+That's already how GitHub works — outside collaborators can't push to a repo they're not on. But a few settings make it airtight:
+
+- **Settings → Collaborators** — should list only you.
+- **Settings → General → Features** — leave **Issues** on (that's the submission form) and turn **Wikis**, **Projects**, and **Discussions** off if you don't want them.
+- **Settings → General → Pull Requests** — you can't disable forks on a public repo, and you don't need to. Anyone can fork and open a PR; nothing merges without you clicking merge.
+- **Settings → Branches → Add branch ruleset** on `main` — optional, but it blocks force-pushes and accidental deletion. Useful insurance against your own bad Tuesday.
 
 ---
 

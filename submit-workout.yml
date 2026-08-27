@@ -1,0 +1,63 @@
+name: Submit a workout
+description: Send in a practice for the library. No format required.
+title: "[Practice] "
+labels: ["submission"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for sending one in. Fill in what you know and leave the rest blank — I'll clean it up.
+        You can drag a photo, PDF, or screenshot straight into the practice box below.
+
+  - type: input
+    id: coach
+    attributes:
+      label: Your name / team
+      description: How you want it credited. Write "anonymous" if you'd rather not.
+      placeholder: Coach Smith, Riverside Swim Club
+    validations:
+      required: true
+
+  - type: dropdown
+    id: course
+    attributes:
+      label: Course
+      options:
+        - SCY (25 yards)
+        - SCM (25 meters)
+        - LCM (50 meters)
+        - Not sure
+    validations:
+      required: true
+
+  - type: input
+    id: group
+    attributes:
+      label: Group or ability level
+      placeholder: 13-14 age group, mid lane
+
+  - type: input
+    id: distance
+    attributes:
+      label: Total distance
+      placeholder: 2900
+
+  - type: textarea
+    id: practice
+    attributes:
+      label: The practice
+      description: Paste it, or drag in a photo / PDF / screenshot. Handwritten is fine.
+      placeholder: |
+        WARM UP
+        400 smooth — 3 UWs off every wall
+
+        MAIN
+        8x100 @ 2:00 — descend 1-4, hold 5-8
+    validations:
+      required: true
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Anything I should know
+      description: How it ran, what to watch for, what you'd change.
