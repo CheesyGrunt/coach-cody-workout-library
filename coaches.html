@@ -23,53 +23,58 @@
 <meta name="twitter:image" content="https://coach-cody-workout-library.onrender.com/og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=Montserrat:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<script>
+/* set the theme before first paint so there is no flash */
+(function(){try{var t=localStorage.getItem('cc-theme');
+if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+</script>
 <style>
 header.hero{padding:52px 0 26px}
 main{padding-bottom:80px}
 section{margin-top:52px;scroll-margin-top:20px}
-h2{font-family:'Barlow Condensed';text-transform:uppercase;font-size:33px;letter-spacing:.02em;
+h2{font-family:Oswald;text-transform:uppercase;font-size:33px;letter-spacing:.02em;
   margin:0 0 14px;font-weight:700;line-height:1.05}
-h2 span{color:var(--gold)}
-h3{font-family:'Barlow Condensed';text-transform:uppercase;font-size:19px;letter-spacing:.09em;
-  color:var(--gold);margin:26px 0 8px;font-weight:700}
+h2 span{color:var(--primary)}
+h3{font-family:Oswald;text-transform:uppercase;font-size:19px;letter-spacing:.09em;
+  color:var(--primary);margin:26px 0 8px;font-weight:700}
 p.body{color:var(--mute);font-size:16px;line-height:1.78;max-width:68ch;margin:0 0 15px}
-p.body b{color:var(--foam)}
-p.body em{color:#BFDDE5;font-style:italic}
+p.body b{color:var(--text)}
+p.body em{color:var(--text2);font-style:italic}
 
 /* jump links */
 .jump{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
-.jump a{font-family:'Barlow Condensed';font-size:14px;letter-spacing:.08em;text-transform:uppercase;
+.jump a{font-family:Oswald;font-size:14px;letter-spacing:.08em;text-transform:uppercase;
   font-weight:600;color:var(--mute);text-decoration:none;border:1px solid var(--line);
   border-radius:999px;padding:8px 15px;transition:.15s}
-.jump a:hover{border-color:var(--gold);color:var(--gold)}
+.jump a:hover{border-color:var(--primary);color:var(--primary)}
 
 /* anatomy */
-.anatomy{background:linear-gradient(180deg,var(--surface) 0%,var(--deep) 100%);
+.anatomy{background:var(--surface);
   border:1px solid var(--line);border-radius:14px;padding:8px 20px 20px;margin-top:20px}
 .step{display:grid;grid-template-columns:118px 1fr;gap:18px;padding:16px 0;
   border-bottom:1px solid rgba(30,90,112,.55);align-items:start}
 .step:last-child{border-bottom:0}
 @media(max-width:620px){.step{grid-template-columns:1fr;gap:5px}}
-.step .lab{font-family:'Barlow Condensed';font-size:17px;font-weight:700;letter-spacing:.05em;
-  text-transform:uppercase;color:var(--gold);padding-top:2px}
+.step .lab{font-family:Oswald;font-size:17px;font-weight:700;letter-spacing:.05em;
+  text-transform:uppercase;color:var(--primary);padding-top:2px}
 .step .lab small{display:block;font-family:'JetBrains Mono';font-size:11px;letter-spacing:0;
   color:var(--mute);text-transform:none;font-weight:500;margin-top:3px}
 .step .txt{color:var(--mute);font-size:15px;line-height:1.65}
-.step .txt b{color:var(--foam)}
+.step .txt b{color:var(--text)}
 
 /* glossary */
 .gloss{margin-top:18px}
-.gcat{font-family:'Barlow Condensed';font-size:15px;letter-spacing:.16em;text-transform:uppercase;
-  color:#7FA8B5;font-weight:600;margin:26px 0 10px;padding-bottom:7px;
+.gcat{font-family:Oswald;font-size:15px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--mute2);font-weight:600;margin:26px 0 10px;padding-bottom:7px;
   border-bottom:1px solid rgba(30,90,112,.7)}
 .gcat:first-child{margin-top:0}
 .grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(285px,1fr));gap:10px}
-.g{background:var(--ink);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
-.g dt{font-family:'JetBrains Mono';font-size:13.5px;color:var(--gold);font-weight:500;margin:0}
+.g{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.g dt{font-family:'JetBrains Mono';font-size:13.5px;color:var(--primary);font-weight:500;margin:0}
 .g dd{margin:5px 0 0;color:var(--mute);font-size:14px;line-height:1.6}
-.g dd em{color:#BFDDE5;font-style:normal}
+.g dd em{color:var(--text2);font-style:normal}
 
 /* first practice */
 .fp{counter-reset:fp;list-style:none;padding:0;margin:18px 0 0;max-width:70ch}
@@ -77,29 +82,29 @@ p.body em{color:#BFDDE5;font-style:italic}
   border-bottom:1px solid rgba(30,90,112,.5);color:var(--mute);font-size:15.5px;line-height:1.68}
 .fp li:last-child{border-bottom:0}
 .fp li::before{content:counter(fp);position:absolute;left:0;top:14px;width:29px;height:29px;
-  border-radius:50%;background:var(--gold);color:#1a1300;font-family:'Barlow Condensed';
+  border-radius:50%;background:var(--primary);color:var(--on-primary);font-family:Oswald;
   font-weight:700;font-size:16px;display:flex;align-items:center;justify-content:center}
-.fp li b{color:var(--foam)}
+.fp li b{color:var(--text)}
 
 /* ask box */
-.ask{background:linear-gradient(180deg,var(--surface2) 0%,var(--deep) 100%);
-  border:1px solid var(--gold);border-radius:14px;padding:26px;margin-top:20px}
+.ask{background:var(--surface);
+  border:1px solid var(--primary);border-radius:14px;padding:26px;margin-top:20px}
 .ask h3{margin-top:0;font-size:23px;letter-spacing:.04em}
 .ask p{color:var(--mute);font-size:15.5px;line-height:1.7;margin:0 0 14px;max-width:64ch}
-.ask p b{color:var(--foam)}
+.ask p b{color:var(--text)}
 .addr{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:6px}
-.addr code{flex:1;min-width:200px;background:var(--ink);border:1px solid var(--line);
+.addr code{flex:1;min-width:200px;background:var(--bg);border:1px solid var(--line);
   border-radius:10px;padding:14px 16px;font-family:'JetBrains Mono';font-size:16px;
-  color:var(--foam);user-select:all;word-break:break-all}
-.copybtn{font-family:'Barlow Condensed';font-weight:600;font-size:15px;letter-spacing:.07em;
+  color:var(--text);user-select:all;word-break:break-all}
+.copybtn{font-family:Oswald;font-weight:600;font-size:15px;letter-spacing:.07em;
   text-transform:uppercase;padding:13px 17px;border-radius:10px;cursor:pointer;white-space:nowrap;
-  border:1px solid var(--line);background:transparent;color:var(--foam);transition:.15s;
+  border:1px solid var(--line);background:transparent;color:var(--text);transition:.15s;
   text-decoration:none;display:inline-block}
-.copybtn:hover{border-color:var(--gold);color:var(--gold)}
-.copybtn.done{background:var(--go);border-color:var(--go);color:#06251e}
-.nomail{color:var(--coral);font-size:15px;line-height:1.6}
-.pull{border-left:4px solid var(--gold);padding:4px 0 4px 20px;margin:22px 0;
-  font-size:18px;line-height:1.65;color:var(--foam);max-width:60ch}
+.copybtn:hover{border-color:var(--primary);color:var(--primary)}
+.copybtn.done{background:var(--go);border-color:var(--go);color:var(--on-primary)}
+.nomail{color:var(--warn);font-size:15px;line-height:1.6}
+.pull{border-left:4px solid var(--primary);padding:4px 0 4px 20px;margin:22px 0;
+  font-size:18px;line-height:1.65;color:var(--text);max-width:60ch}
 
 @media(max-width:700px){
   .jump{gap:6px;margin-top:18px}
@@ -129,6 +134,7 @@ p.body em{color:#BFDDE5;font-style:italic}
   <a href="index.html">The Library</a>
   <a href="coaches.html" class="on">New Coaches</a>
   <a href="submit.html">Send a Practice</a>
+  <button class="themebtn" id="themebtn" aria-label="Switch theme">&#9790;</button>
 </div></nav>
 
 <header class="hero"><div class="wrap">
@@ -256,7 +262,7 @@ p.body em{color:#BFDDE5;font-style:italic}
     <li><b>Watch one thing.</b> Not everything &mdash; one thing. Walls, or breakouts, or stroke count. Fix that. Next practice, watch something else.</li>
     <li><b>Cool them down and end on time.</b> Both matter more than you&#39;d think, and both build trust with swimmers and with parents in the lobby.</li>
   </ol>
-  <p class="body" style="margin-top:18px">If you want a starting point and don&#39;t want to choose, the library has a <a href="index.html" style="color:var(--gold)">&ldquo;Pick one for me&rdquo;</a> button. Filter to your course, hit it, run what comes up.</p>
+  <p class="body" style="margin-top:18px">If you want a starting point and don&#39;t want to choose, the library has a <a href="index.html" style="color:var(--primary)">&ldquo;Pick one for me&rdquo;</a> button. Filter to your course, hit it, run what comes up.</p>
 </section>
 
 <section id="ask">
@@ -282,7 +288,7 @@ p.body em{color:#BFDDE5;font-style:italic}
 
 <section>
   <div class="rope thin"></div>
-  <p class="body" style="margin-top:26px">Got a practice of your own? <a href="submit.html" style="color:var(--gold)">Send it in</a> &mdash; any format, and your name goes on it.</p>
+  <p class="body" style="margin-top:26px">Got a practice of your own? <a href="submit.html" style="color:var(--primary)">Send it in</a> &mdash; any format, and your name goes on it.</p>
 </section>
 
 </main>
@@ -333,6 +339,31 @@ p.body em{color:#BFDDE5;font-style:italic}
         .catch(function(){ legacy(email, el, 'Copied'); });
     } else { legacy(email, el, 'Copied'); }
   };
+})();
+
+/* ---------- theme toggle ---------- */
+(function(){
+  var root=document.documentElement, btn=document.getElementById('themebtn');
+  if(!btn) return;
+  function current(){
+    var set=root.getAttribute('data-theme');
+    if(set) return set;
+    try{ return window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'; }
+    catch(e){ return 'light'; }
+  }
+  function paint(){
+    var d=current()==='dark';
+    btn.textContent = d ? '\u2600' : '\u263D';
+    btn.setAttribute('aria-label', d ? 'Switch to light mode' : 'Switch to dark mode');
+    btn.title = btn.getAttribute('aria-label');
+  }
+  btn.onclick=function(){
+    var next = current()==='dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme',next);
+    try{ localStorage.setItem('cc-theme',next); }catch(e){}
+    paint();
+  };
+  paint();
 })();
 </script>
 </body>

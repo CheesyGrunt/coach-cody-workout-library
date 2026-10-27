@@ -8,123 +8,120 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=Montserrat:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<script>
+/* set the theme before first paint so there is no flash */
+(function(){try{var t=localStorage.getItem('cc-theme');
+if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+</script>
 <style>
-:root{
-  --ink:#07171F; --deep:#0C2A37; --surface:#11394A; --surface2:#16465A;
-  --line:#1E5A70; --foam:#EAF6F6; --mute:#9DC4CE; --gold:#FFC53D; --coral:#FF6B6B;
-  --lane1:#0E83C9; --lane2:#FFFFFF; --lane3:#E2403B; --go:#36C9A8;
-}
 *{box-sizing:border-box}
-body{margin:0;background:
-  radial-gradient(1200px 600px at 80% -10%, #103a4d 0%, transparent 60%),
-  linear-gradient(180deg,#07171F 0%, #0A2330 100%);
-  color:var(--foam);font-family:Inter,system-ui,sans-serif;min-height:100vh}
+/* body colours come from style.css */
 .wrap{max-width:1240px;margin:0 auto;padding:0 20px}
 
 header.hero{padding:34px 0 20px}
-.eyebrow{font-family:'Barlow Condensed';letter-spacing:.28em;text-transform:uppercase;
-  font-weight:600;color:var(--gold);font-size:13px;margin:0 0 8px}
-h1{font-family:'Barlow Condensed';font-weight:700;font-size:clamp(32px,5vw,52px);
+.eyebrow{font-family:Oswald;letter-spacing:.28em;text-transform:uppercase;
+  font-weight:600;color:var(--primary);font-size:13px;margin:0 0 8px}
+h1{font-family:Oswald;font-weight:700;font-size:clamp(32px,5vw,52px);
   line-height:.95;margin:0;letter-spacing:.01em;text-transform:uppercase}
-h1 span{color:var(--gold)}
+h1 span{color:var(--primary)}
 .tag{font-size:15px;color:var(--mute);margin:12px 0 0;max-width:70ch;line-height:1.6}
-.tag a{color:var(--gold)}
+.tag a{color:var(--primary)}
 
 /* gate */
 #gate{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;
-  background:linear-gradient(180deg,#07171F 0%,#0A2330 100%);padding:20px}
+  background:var(--bg);padding:20px}
 .gatebox{max-width:400px;width:100%;text-align:center}
-.gatebox h2{font-family:'Barlow Condensed';text-transform:uppercase;font-size:34px;margin:14px 0 6px;letter-spacing:.02em}
+.gatebox h2{font-family:Oswald;text-transform:uppercase;font-size:34px;margin:14px 0 6px;letter-spacing:.02em}
 .gatebox p{color:var(--mute);font-size:14px;margin:0 0 20px;line-height:1.6}
 .gatebox input{width:100%;background:var(--surface);border:1px solid var(--line);border-radius:10px;
-  padding:13px 15px;color:var(--foam);font-size:16px;font-family:Inter;outline:none;text-align:center}
-.gatebox input:focus{border-color:var(--gold)}
-.gateerr{color:var(--coral);font-size:13px;margin-top:10px;min-height:18px}
+  padding:13px 15px;color:var(--text);font-size:16px;font-family:Montserrat;outline:none;text-align:center}
+.gatebox input:focus{border-color:var(--primary)}
+.gateerr{color:var(--warn);font-size:13px;margin-top:10px;min-height:18px}
 
 /* layout */
 .cols{display:grid;grid-template-columns:1fr 1fr;gap:22px;padding-bottom:70px;align-items:start}
 @media(max-width:900px){.cols{grid-template-columns:1fr}}
-.panel{background:linear-gradient(180deg,var(--surface) 0%,var(--deep) 100%);
+.panel{background:var(--surface);
   border:1px solid var(--line);border-radius:14px;padding:18px}
-.panel h2{font-family:'Barlow Condensed';text-transform:uppercase;font-size:20px;
+.panel h2{font-family:Oswald;text-transform:uppercase;font-size:20px;
   letter-spacing:.08em;margin:0 0 4px;font-weight:700}
 .panel h2 .n{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;
-  border-radius:50%;background:var(--gold);color:#1a1300;font-size:13px;margin-right:9px;vertical-align:2px}
+  border-radius:50%;background:var(--primary);color:var(--on-primary);font-size:13px;margin-right:9px;vertical-align:2px}
 .hint{color:var(--mute);font-size:13px;margin:0 0 14px;line-height:1.55}
 
 /* drop */
 .drop{border:2px dashed var(--line);border-radius:12px;padding:22px;text-align:center;
   transition:.15s;cursor:pointer;margin-bottom:12px}
-.drop:hover,.drop.over{border-color:var(--gold);background:rgba(255,197,61,.06)}
-.drop b{color:var(--gold);font-family:'Barlow Condensed';font-size:17px;letter-spacing:.06em;text-transform:uppercase}
+.drop:hover,.drop.over{border-color:var(--primary);background:rgba(255,197,61,.06)}
+.drop b{color:var(--primary);font-family:Oswald;font-size:17px;letter-spacing:.06em;text-transform:uppercase}
 .drop small{display:block;color:var(--mute);font-size:12px;margin-top:5px}
-textarea{width:100%;min-height:260px;background:var(--ink);border:1px solid var(--line);
-  border-radius:10px;padding:13px;color:var(--foam);font-family:'JetBrains Mono',monospace;
+textarea{width:100%;min-height:260px;background:var(--bg);border:1px solid var(--line);
+  border-radius:10px;padding:13px;color:var(--text);font-family:'JetBrains Mono',monospace;
   font-size:12.5px;line-height:1.6;outline:none;resize:vertical}
-textarea:focus{border-color:var(--gold)}
+textarea:focus{border-color:var(--primary)}
 
 /* form */
 .frow{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
 .f{display:flex;flex-direction:column;gap:5px}
 .f.wide{grid-column:1 / -1}
 label{font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--mute);font-weight:600}
-input[type=text],select{background:var(--ink);border:1px solid var(--line);border-radius:8px;
-  padding:9px 11px;color:var(--foam);font-size:14px;font-family:Inter;outline:none;width:100%}
-input[type=text]:focus,select:focus{border-color:var(--gold)}
+input[type=text],select{background:var(--bg);border:1px solid var(--line);border-radius:8px;
+  padding:9px 11px;color:var(--text);font-size:14px;font-family:Montserrat;outline:none;width:100%}
+input[type=text]:focus,select:focus{border-color:var(--primary)}
 .auto{color:var(--go);font-size:11px;letter-spacing:.06em}
 
-.btn{font-family:'Barlow Condensed';font-weight:600;font-size:16px;letter-spacing:.06em;
+.btn{font-family:Oswald;font-weight:600;font-size:16px;letter-spacing:.06em;
   text-transform:uppercase;padding:11px 18px;border-radius:10px;cursor:pointer;
-  border:1px solid var(--line);background:transparent;color:var(--foam);transition:.15s}
-.btn:hover:not(:disabled){border-color:var(--gold);color:var(--gold)}
-.btn.primary{background:var(--gold);color:#1a1300;border-color:var(--gold)}
-.btn.primary:hover:not(:disabled){filter:brightness(1.08);color:#1a1300}
-.btn.go{background:var(--go);color:#06251e;border-color:var(--go)}
-.btn.go:hover:not(:disabled){filter:brightness(1.08);color:#06251e}
+  border:1px solid var(--line);background:transparent;color:var(--text);transition:.15s}
+.btn:hover:not(:disabled){border-color:var(--primary);color:var(--primary)}
+.btn.primary{background:var(--primary);color:var(--on-primary);border-color:var(--primary)}
+.btn.primary:hover:not(:disabled){filter:brightness(1.08);color:var(--on-primary)}
+.btn.go{background:var(--go);color:var(--on-primary);border-color:var(--go)}
+.btn.go:hover:not(:disabled){filter:brightness(1.08);color:var(--on-primary)}
 .btn:disabled{opacity:.4;cursor:not-allowed}
 .btnrow{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}
 
 /* preview card */
-.card{background:linear-gradient(180deg,var(--surface2) 0%,var(--deep) 100%);
+.card{background:var(--surface);
   border:1px solid var(--line);border-radius:14px;padding:16px;position:relative;overflow:hidden;margin-top:12px}
-.card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--bar,var(--gold))}
+.card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--bar,var(--primary))}
 .ctop{display:flex;justify-content:space-between;gap:10px;margin-bottom:8px}
-.badge{font-family:'Barlow Condensed';font-weight:600;font-size:12px;letter-spacing:.08em;
-  text-transform:uppercase;padding:4px 10px;border-radius:999px;color:#0b1a20}
+.badge{font-family:Oswald;font-weight:600;font-size:12px;letter-spacing:.08em;
+  text-transform:uppercase;padding:4px 10px;border-radius:999px;color:var(--on-primary)}
 .chip{font-family:'JetBrains Mono';font-size:11px;color:var(--mute);border:1px solid var(--line);
   border-radius:999px;padding:3px 9px;height:fit-content}
-.ctitle{font-family:'Barlow Condensed';font-size:21px;font-weight:700;margin:0 0 6px;line-height:1.15}
+.ctitle{font-family:Oswald;font-size:21px;font-weight:700;margin:0 0 6px;line-height:1.15}
 .meta{display:flex;gap:14px;color:var(--mute);font-size:12px;margin-bottom:10px;flex-wrap:wrap}
-.meta b{color:var(--foam)}
+.meta b{color:var(--text)}
 .sets{font-size:13.5px;line-height:1.6;max-height:280px;overflow:auto}
-.sets .h{font-family:'Barlow Condensed';font-weight:700;letter-spacing:.07em;text-transform:uppercase;
-  color:var(--gold);margin:11px 0 3px;font-size:14px}
+.sets .h{font-family:Oswald;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--primary);margin:11px 0 3px;font-size:14px}
 .sets .h:first-child{margin-top:0}
-.sets .l{color:#D6ECEF;padding-left:2px}
+.sets .l{color:var(--text2);padding-left:2px}
 
 /* queue */
 .q{display:flex;align-items:center;gap:11px;padding:10px 12px;border:1px solid var(--line);
-  border-radius:10px;margin-bottom:8px;background:var(--ink)}
+  border-radius:10px;margin-bottom:8px;background:var(--bg)}
 .qbar{width:4px;align-self:stretch;border-radius:2px;flex:none}
 .qmain{flex:1;min-width:0}
 .qtitle{font-weight:600;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .qmeta{color:var(--mute);font-size:12px;font-family:'JetBrains Mono';margin-top:2px}
 .qdel{background:none;border:0;color:var(--mute);cursor:pointer;font-size:19px;line-height:1;padding:4px 6px}
-.qdel:hover{color:var(--coral)}
+.qdel:hover{color:var(--warn)}
 .qempty{color:var(--mute);font-size:14px;text-align:center;padding:26px 10px;line-height:1.6}
 
 .note{background:rgba(54,201,168,.09);border:1px solid rgba(54,201,168,.35);border-radius:10px;
-  padding:12px 14px;font-size:13px;line-height:1.6;color:#CFEFE8;margin-top:14px}
+  padding:12px 14px;font-size:13px;line-height:1.6;color:var(--text2);margin-top:14px}
 .note b{color:var(--go)}
-.warn{background:rgba(255,107,107,.09);border-color:rgba(255,107,107,.35);color:#FBD9D9}
-.warn b{color:var(--coral)}
+.warn{background:rgba(255,107,107,.09);border-color:rgba(255,107,107,.35);color:var(--text2)}
+.warn b{color:var(--warn)}
 .steps{margin:10px 0 0;padding-left:19px;color:var(--mute);font-size:13px;line-height:1.75}
-.steps code{background:var(--ink);border:1px solid var(--line);border-radius:5px;padding:1px 6px;
-  font-family:'JetBrains Mono';font-size:11.5px;color:var(--gold)}
+.steps code{background:var(--bg);border:1px solid var(--line);border-radius:5px;padding:1px 6px;
+  font-family:'JetBrains Mono';font-size:11.5px;color:var(--primary)}
 footer{border-top:1px solid var(--line);padding:22px 0 44px;color:var(--mute);font-size:13px}
-footer a{color:var(--gold);text-decoration:none}
+footer a{color:var(--primary);text-decoration:none}
 @media (prefers-reduced-motion: reduce){*{transition:none!important}}
 </style>
 </head>
@@ -134,7 +131,7 @@ footer a{color:var(--gold);text-decoration:none}
   <div class="gatebox">
     <div class="rope" style="margin-bottom:26px"></div>
     <p class="eyebrow">Coach Cody's Library</p>
-    <h2>Deck <span style="color:var(--gold)">Pass</span></h2>
+    <h2>Deck <span style="color:var(--primary)">Pass</span></h2>
     <p>Coaches' entrance. Nothing you do here touches the live library until you push it yourself.</p>
     <input id="gateInput" type="password" placeholder="Passphrase" autocomplete="off">
     <div class="gateerr" id="gateErr"></div>
@@ -143,11 +140,16 @@ footer a{color:var(--gold);text-decoration:none}
 </div>
 
 <div class="rope"></div>
+<nav class="topnav"><div class="wrap">
+  <a href="index.html">The Library</a>
+  <a href="admin.html" class="on">Deck Pass</a>
+  <button class="themebtn" id="themebtn" aria-label="Switch theme">&#9790;</button>
+</div></nav>
 <header class="hero"><div class="wrap">
   <p class="eyebrow">Coach Cody's Library</p>
   <h1>Deck <span>Pass</span></h1>
   <p class="tag">Paste a practice or drop a file. This reads it, guesses the type, course and distance, and turns it into a library entry. Fix anything it got wrong, add it to the stack, then export when you're done.</p>
-  <p class="tag" style="font-size:13.5px"><b style="color:var(--gold)">Nothing here writes to the live site.</b> Export downloads two files to your computer. The library only changes when you commit and push them.</p>
+  <p class="tag" style="font-size:13.5px"><b style="color:var(--primary)">Nothing here writes to the live site.</b> Export downloads two files to your computer. The library only changes when you commit and push them.</p>
 </div></header>
 
 <main class="wrap">
@@ -268,10 +270,10 @@ footer a{color:var(--gold);text-decoration:none}
 /* ---------- shared ---------- */
 const TYPES = (window.WORKOUT_DATA && window.WORKOUT_DATA.types) || [];
 const BAR = {
- 'Aerobic / Base':'#36C9A8','Threshold / Endurance':'#5BB0FF','VO2 Max':'#B388FF',
- 'Sprint / Speed-Power':'#FF6B6B','Race Pace / Broken':'#FF9F45','IM':'#FFC53D',
- 'Kick':'#48D1C0','Pull / Recovery':'#8FD694','Underwater / Skills':'#4FC3F7',
- 'Distance / Test':'#E0E0E0','Stroke-Specific':'#F48FB1','Themed / Holiday':'#FFD166'};
+ 'Aerobic / Base':'var(--t-aerobic)','Threshold / Endurance':'var(--t-threshold)','VO2 Max':'var(--t-vo2)',
+ 'Sprint / Speed-Power':'var(--t-sprint)','Race Pace / Broken':'var(--t-racepace)','IM':'var(--t-im)',
+ 'Kick':'var(--t-kick)','Pull / Recovery':'var(--t-pull)','Underwater / Skills':'var(--t-under)',
+ 'Distance / Test':'var(--t-distance)','Stroke-Specific':'var(--t-stroke)','Themed / Holiday':'var(--t-themed)'};
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
 const sel = document.getElementById('fType');
@@ -416,7 +418,7 @@ function build(){
 function renderPreview(){
   if (!current) { document.getElementById('preview').innerHTML=''; return; }
   const w = build();
-  const bar = BAR[w.type] || '#FFC53D';
+  const bar = BAR[w.type] || 'var(--primary)';
   const sets = w.blocks.map(b =>
     b[0]==='h' ? `<div class="h">${esc(b[1])}</div>` : `<div class="l">${esc(b[1])}</div>`).join('');
   const meta = [];
@@ -456,7 +458,7 @@ function renderQueue(){
   hint.textContent = `${queue.length} practice${queue.length>1?'s':''} ready · ${total.toLocaleString()} total`;
   el.innerHTML = queue.map((w,i)=>`
     <div class="q">
-      <div class="qbar" style="background:${BAR[w.type]||'#FFC53D'}"></div>
+      <div class="qbar" style="background:${BAR[w.type]||'var(--primary)'}"></div>
       <div class="qmain">
         <div class="qtitle">${esc(w.title)}</div>
         <div class="qmeta">${esc(w.course)} · ${esc(w.dist||'—')} · ${esc(w.type)}</div>
@@ -561,6 +563,31 @@ document.getElementById('clearBtn').onclick = () => {
 };
 
 renderQueue();
+
+/* ---------- theme toggle ---------- */
+(function(){
+  var root=document.documentElement, btn=document.getElementById('themebtn');
+  if(!btn) return;
+  function current(){
+    var set=root.getAttribute('data-theme');
+    if(set) return set;
+    try{ return window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'; }
+    catch(e){ return 'light'; }
+  }
+  function paint(){
+    var d=current()==='dark';
+    btn.textContent = d ? '\u2600' : '\u263D';
+    btn.setAttribute('aria-label', d ? 'Switch to light mode' : 'Switch to dark mode');
+    btn.title = btn.getAttribute('aria-label');
+  }
+  btn.onclick=function(){
+    var next = current()==='dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme',next);
+    try{ localStorage.setItem('cc-theme',next); }catch(e){}
+    paint();
+  };
+  paint();
+})();
 </script>
 </body>
 </html>

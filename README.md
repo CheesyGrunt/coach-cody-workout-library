@@ -118,6 +118,16 @@ To find an id, open a practice on the site and look at the link: it ends in `#p=
 
 ---
 
+## Look and feel
+
+The site uses your Tier 1 Open Water palette: Deep Teal `#004E64` as primary, Persian Indigo `#27187E` as the attention accent, Ink on Ghost. Type is Oswald for caps and headings, Montserrat for body. JetBrains Mono is kept for intervals and distances, where a monospace column matters more than brand fidelity.
+
+**Light is the default on purpose.** A coach reads this on a deck in daylight, and the print sheet is black on white, so what you see matches what comes out of the printer. A dark toggle sits in the nav on every page, it remembers the choice, and it follows the operating system until someone sets it themselves.
+
+**All colour lives in `style.css`.** Two blocks of tokens, `:root` for light and `:root[data-theme="dark"]` for dark, including the twelve focus-area colours (`--t-aerobic`, `--t-sprint`, and so on). Change a value once and it moves everywhere. No page has hardcoded hex any more.
+
+---
+
 ## Using the library
 
 **Three filter rows,** stacked so you narrow the same way you'd think about it:

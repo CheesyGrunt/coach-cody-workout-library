@@ -23,36 +23,41 @@
 <meta name="twitter:image" content="https://coach-cody-workout-library.onrender.com/og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=Montserrat:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<script>
+/* set the theme before first paint so there is no flash */
+(function(){try{var t=localStorage.getItem('cc-theme');
+if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+</script>
 <style>
 header.hero{padding:52px 0 26px}
 main{padding-bottom:80px}
 section{margin-top:44px}
-h2{font-family:'Barlow Condensed';text-transform:uppercase;font-size:31px;letter-spacing:.02em;
+h2{font-family:Oswald;text-transform:uppercase;font-size:31px;letter-spacing:.02em;
   margin:0 0 12px;font-weight:700;line-height:1.05}
-h2 span{color:var(--gold)}
+h2 span{color:var(--primary)}
 p.body{color:var(--mute);font-size:16px;line-height:1.75;max-width:66ch;margin:0 0 14px}
-p.body b{color:var(--foam)}
+p.body b{color:var(--text)}
 
 /* format grid */
 .formats{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin-top:18px}
-.fmt{background:linear-gradient(180deg,var(--surface) 0%,var(--deep) 100%);
+.fmt{background:var(--surface);
   border:1px solid var(--line);border-radius:12px;padding:16px}
-.fmt b{display:block;font-family:'Barlow Condensed';font-size:19px;text-transform:uppercase;
-  letter-spacing:.04em;color:var(--gold);margin-bottom:5px}
+.fmt b{display:block;font-family:Oswald;font-size:19px;text-transform:uppercase;
+  letter-spacing:.04em;color:var(--primary);margin-bottom:5px}
 .fmt span{color:var(--mute);font-size:14px;line-height:1.55}
 
 /* credit block */
-.credit{background:linear-gradient(180deg,var(--surface) 0%,var(--deep) 100%);
-  border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:12px;
+.credit{background:var(--surface);
+  border:1px solid var(--line);border-left:4px solid var(--primary);border-radius:12px;
   padding:22px 24px;margin-top:18px}
-.credit .demo{background:var(--ink);border:1px solid var(--line);border-radius:10px;
+.credit .demo{background:var(--bg);border:1px solid var(--line);border-radius:10px;
   padding:15px 17px;margin-top:14px}
-.credit .demo .dt{font-family:'Barlow Condensed';font-size:22px;font-weight:700;
+.credit .demo .dt{font-family:Oswald;font-size:22px;font-weight:700;
   text-transform:uppercase;letter-spacing:.01em}
 .credit .demo .dm{font-family:'JetBrains Mono';font-size:12px;color:var(--mute);margin-top:5px}
-.credit .demo .dby{margin-top:9px;font-size:14px;color:var(--gold);font-weight:600}
+.credit .demo .dby{margin-top:9px;font-size:14px;color:var(--primary);font-weight:600}
 
 /* checklist */
 .check{list-style:none;padding:0;margin:16px 0 0;max-width:66ch}
@@ -60,33 +65,33 @@ p.body b{color:var(--foam)}
   line-height:1.6;border-bottom:1px solid rgba(30,90,112,.5)}
 .check li:last-child{border-bottom:0}
 .check li::before{content:"";position:absolute;left:6px;top:16px;width:9px;height:9px;
-  border-radius:50%;background:var(--gold)}
-.check li b{color:var(--foam)}
-.check li i{font-style:normal;color:#7FA8B5;font-size:14px}
+  border-radius:50%;background:var(--primary)}
+.check li b{color:var(--text)}
+.check li i{font-style:normal;color:var(--mute2);font-size:14px}
 
 /* send box */
-.sendbox{background:linear-gradient(180deg,var(--surface2) 0%,var(--deep) 100%);
-  border:1px solid var(--gold);border-radius:14px;padding:26px;margin-top:20px}
-.sendbox h3{font-family:'Barlow Condensed';text-transform:uppercase;letter-spacing:.06em;
+.sendbox{background:var(--surface);
+  border:1px solid var(--primary);border-radius:14px;padding:26px;margin-top:20px}
+.sendbox h3{font-family:Oswald;text-transform:uppercase;letter-spacing:.06em;
   font-size:22px;margin:0 0 6px;font-weight:700}
 .sendbox p{color:var(--mute);font-size:14.5px;line-height:1.6;margin:0 0 16px;max-width:60ch}
 .addr{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-.addr code{flex:1;min-width:200px;background:var(--ink);border:1px solid var(--line);
+.addr code{flex:1;min-width:200px;background:var(--bg);border:1px solid var(--line);
   border-radius:10px;padding:14px 16px;font-family:'JetBrains Mono';font-size:16px;
-  color:var(--foam);user-select:all;word-break:break-all}
-.copybtn{font-family:'Barlow Condensed';font-weight:600;font-size:15px;letter-spacing:.07em;
+  color:var(--text);user-select:all;word-break:break-all}
+.copybtn{font-family:Oswald;font-weight:600;font-size:15px;letter-spacing:.07em;
   text-transform:uppercase;padding:13px 17px;border-radius:10px;cursor:pointer;white-space:nowrap;
-  border:1px solid var(--line);background:transparent;color:var(--foam);transition:.15s;
+  border:1px solid var(--line);background:transparent;color:var(--text);transition:.15s;
   text-decoration:none;display:inline-block}
-.copybtn:hover{border-color:var(--gold);color:var(--gold)}
-.copybtn.done{background:var(--go);border-color:var(--go);color:#06251e}
-.tmpl{width:100%;min-height:200px;background:var(--ink);border:1px solid var(--line);
-  border-radius:10px;padding:14px;color:#D6ECEF;font-family:'JetBrains Mono';font-size:12.5px;
+.copybtn:hover{border-color:var(--primary);color:var(--primary)}
+.copybtn.done{background:var(--go);border-color:var(--go);color:var(--on-primary)}
+.tmpl{width:100%;min-height:200px;background:var(--bg);border:1px solid var(--line);
+  border-radius:10px;padding:14px;color:var(--text2);font-family:'JetBrains Mono';font-size:12.5px;
   line-height:1.7;outline:none;resize:vertical;margin-top:16px}
-.tmpl:focus{border-color:var(--gold)}
+.tmpl:focus{border-color:var(--primary)}
 .sendrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;align-items:center}
 .sendrow .or{color:var(--mute);font-size:14px}
-.nomail{color:var(--coral);font-size:15px;line-height:1.6}
+.nomail{color:var(--warn);font-size:15px;line-height:1.6}
 
 @media(max-width:700px){
   .formats{grid-template-columns:1fr;gap:10px}
@@ -114,6 +119,7 @@ p.body b{color:var(--foam)}
   <a href="index.html">The Library</a>
   <a href="coaches.html">New Coaches</a>
   <a href="submit.html" class="on">Send a Practice</a>
+  <button class="themebtn" id="themebtn" aria-label="Switch theme">&#9790;</button>
 </div></nav>
 
 <header class="hero"><div class="wrap">
@@ -186,7 +192,7 @@ p.body b{color:var(--foam)}
 
 <section>
   <div class="rope thin"></div>
-  <p class="body" style="margin-top:26px">New to coaching and not ready to send anything yet? <a href="coaches.html" style="color:var(--gold)">Start over here instead</a> &mdash; that page walks through the shorthand and how a practice is put together.</p>
+  <p class="body" style="margin-top:26px">New to coaching and not ready to send anything yet? <a href="coaches.html" style="color:var(--primary)">Start over here instead</a> &mdash; that page walks through the shorthand and how a practice is put together.</p>
 </section>
 
 </main>
@@ -253,6 +259,31 @@ p.body b{color:var(--foam)}
 
   document.getElementById('copyAddr').onclick = function(){ copy(email, this, 'Copied'); };
   document.getElementById('copyTmpl').onclick = function(){ copy(TEMPLATE, this, 'Copied'); };
+})();
+
+/* ---------- theme toggle ---------- */
+(function(){
+  var root=document.documentElement, btn=document.getElementById('themebtn');
+  if(!btn) return;
+  function current(){
+    var set=root.getAttribute('data-theme');
+    if(set) return set;
+    try{ return window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'; }
+    catch(e){ return 'light'; }
+  }
+  function paint(){
+    var d=current()==='dark';
+    btn.textContent = d ? '\u2600' : '\u263D';
+    btn.setAttribute('aria-label', d ? 'Switch to light mode' : 'Switch to dark mode');
+    btn.title = btn.getAttribute('aria-label');
+  }
+  btn.onclick=function(){
+    var next = current()==='dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme',next);
+    try{ localStorage.setItem('cc-theme',next); }catch(e){}
+    paint();
+  };
+  paint();
 })();
 </script>
 </body>
