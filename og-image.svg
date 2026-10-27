@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#07171F"/>
+      <stop offset="100%" stop-color="#0A2330"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="78%" cy="4%" r="62%">
+      <stop offset="0%" stop-color="#14465C" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#14465C" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="ropeTop"><rect x="0" y="0" width="1200" height="14" rx="7"/></clipPath>
+    <clipPath id="ropeBot"><rect x="0" y="616" width="1200" height="14" rx="7"/></clipPath>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+
+  <g clip-path="url(#ropeTop)" opacity="0.9"><rect x="0" y="0" width="26" height="14" fill="#0E83C9"/><rect x="26" y="0" width="8" height="14" fill="#FFFFFF"/><rect x="34" y="0" width="26" height="14" fill="#E2403B"/><rect x="60" y="0" width="26" height="14" fill="#0E83C9"/><rect x="86" y="0" width="8" height="14" fill="#FFFFFF"/><rect x="94" y="0" width="26" height="14" fill="#E2403B"/><rect x="120" y="0" width="26" height="14" fill="#0E83C9"/><rect x="146" y="0" width="8" height="14" fill="#FFFFFF"/><rect x="154" y="0" width="26" height="14" fill="#E2403B"/><rect x="180" y="0" width="26" height="14" fill="#0E83C9"/><rect x="206" y="0" width="8" height="14" fill="#FFFFFF"/><rect x="214" y="0" width="26" height="14" fill="#E2403B"/><rect x="240" y="0" width="26" height="14" fill="#0E83C9"/><rect x="266" y="0" width="8" height="14" fill="#FFFFFF"/><rect x="274" y="0" width="26" height="14" fill="#E2403B"/><rect x="300" y="0" width="26" height="14" fill="#0E83C9"/><rect x="326" y="0" width="8" height="14" fill="#FFFFFF"/><rect x="334" y="0" width="26" height="14" fill="#E2403B"/><rect x="360" y="0" width="26" height="14" fill="#0E83C9"/><rect x="386" y="0" width="8" height="14" fill="#FFFFFF"/><rect x="394" y="0" width="26" height="14" fill="#E2403B"/><rect x="420" y="0" width="26" height="14" fill="#0E83C9"/><rect x="446" y="0" width="8" height="14" fill="#FFFFFF"/><rect x="454" y="0" width="26" height="14" fill="#E2403B"/><rect x="480" y="0" width="26" height="14" fill="#0E83C9"/><rect x="506" y="0" width="8" height="14" fill="#FFFFFF"/><rect x="514" y="0" width="26" height="14" fill="#E2403B"/><rect x="540" y="0" width="26" height="14" fill="#0E83C9"/><rect x="566" y="0" width="8" height="14" fill="#FFFFFF"/><rect x="574" y="0" width="26" height="14" fill="#E2403B"/><rect x="600" y="0" width="26" height="14" fill="#0E83C9"/><rect x="626" y="0" width="8" height="14" fill="#FFFFFF"/><rect x="634" y="0" width="26" height="14" fill="#E2403B"/><rect x="660" y="0" width="26" height="14" fill="#0E83C9"/><rect x="686" y="0" width="8" height="14" fill="#FFFFFF"/><rect x="694" y="0" width="26" height="14" fill="#E2403B"/><rect x="720" y="0" width="26" height="14" fill="#0E83C9"/><rect x="746" y="0" width="8" height="14" fill="#FFFFFF"/><rect x="754" y="0" width="26" height="14" fill="#E2403B"/><rect x="780" y="0" width="26" height="14" fill="#0E83C9"/><rect x="806" y="0" width="8" height="14" fill="#FFFFFF"/><rect x="814" y="0" width="26" height="14" fill="#E2403B"/><rect x="840" y="0" width="26" height="14" fill="#0E83C9"/><rect x="866" y="0" width="8" height="14" fill="#FFFFFF"/><rect x="874" y="0" width="26" height="14" fill="#E2403B"/><rect x="900" y="0" width="26" height="14" fill="#0E83C9"/><rect x="926" y="0" width="8" height="14" fill="#FFFFFF"/><rect x="934" y="0" width="26" height="14" fill="#E2403B"/><rect x="960" y="0" width="26" height="14" fill="#0E83C9"/><rect x="986" y="0" width="8" height="14" fill="#FFFFFF"/><rect x="994" y="0" width="26" height="14" fill="#E2403B"/><rect x="1020" y="0" width="26" height="14" fill="#0E83C9"/><rect x="1046" y="0" width="8" height="14" fill="#FFFFFF"/><rect x="1054" y="0" width="26" height="14" fill="#E2403B"/><rect x="1080" y="0" width="26" height="14" fill="#0E83C9"/><rect x="1106" y="0" width="8" height="14" fill="#FFFFFF"/><rect x="1114" y="0" width="26" height="14" fill="#E2403B"/><rect x="1140" y="0" width="26" height="14" fill="#0E83C9"/><rect x="1166" y="0" width="8" height="14" fill="#FFFFFF"/><rect x="1174" y="0" width="26" height="14" fill="#E2403B"/></g>
+  <g clip-path="url(#ropeBot)" opacity="0.9"><rect x="0" y="616" width="26" height="14" fill="#0E83C9"/><rect x="26" y="616" width="8" height="14" fill="#FFFFFF"/><rect x="34" y="616" width="26" height="14" fill="#E2403B"/><rect x="60" y="616" width="26" height="14" fill="#0E83C9"/><rect x="86" y="616" width="8" height="14" fill="#FFFFFF"/><rect x="94" y="616" width="26" height="14" fill="#E2403B"/><rect x="120" y="616" width="26" height="14" fill="#0E83C9"/><rect x="146" y="616" width="8" height="14" fill="#FFFFFF"/><rect x="154" y="616" width="26" height="14" fill="#E2403B"/><rect x="180" y="616" width="26" height="14" fill="#0E83C9"/><rect x="206" y="616" width="8" height="14" fill="#FFFFFF"/><rect x="214" y="616" width="26" height="14" fill="#E2403B"/><rect x="240" y="616" width="26" height="14" fill="#0E83C9"/><rect x="266" y="616" width="8" height="14" fill="#FFFFFF"/><rect x="274" y="616" width="26" height="14" fill="#E2403B"/><rect x="300" y="616" width="26" height="14" fill="#0E83C9"/><rect x="326" y="616" width="8" height="14" fill="#FFFFFF"/><rect x="334" y="616" width="26" height="14" fill="#E2403B"/><rect x="360" y="616" width="26" height="14" fill="#0E83C9"/><rect x="386" y="616" width="8" height="14" fill="#FFFFFF"/><rect x="394" y="616" width="26" height="14" fill="#E2403B"/><rect x="420" y="616" width="26" height="14" fill="#0E83C9"/><rect x="446" y="616" width="8" height="14" fill="#FFFFFF"/><rect x="454" y="616" width="26" height="14" fill="#E2403B"/><rect x="480" y="616" width="26" height="14" fill="#0E83C9"/><rect x="506" y="616" width="8" height="14" fill="#FFFFFF"/><rect x="514" y="616" width="26" height="14" fill="#E2403B"/><rect x="540" y="616" width="26" height="14" fill="#0E83C9"/><rect x="566" y="616" width="8" height="14" fill="#FFFFFF"/><rect x="574" y="616" width="26" height="14" fill="#E2403B"/><rect x="600" y="616" width="26" height="14" fill="#0E83C9"/><rect x="626" y="616" width="8" height="14" fill="#FFFFFF"/><rect x="634" y="616" width="26" height="14" fill="#E2403B"/><rect x="660" y="616" width="26" height="14" fill="#0E83C9"/><rect x="686" y="616" width="8" height="14" fill="#FFFFFF"/><rect x="694" y="616" width="26" height="14" fill="#E2403B"/><rect x="720" y="616" width="26" height="14" fill="#0E83C9"/><rect x="746" y="616" width="8" height="14" fill="#FFFFFF"/><rect x="754" y="616" width="26" height="14" fill="#E2403B"/><rect x="780" y="616" width="26" height="14" fill="#0E83C9"/><rect x="806" y="616" width="8" height="14" fill="#FFFFFF"/><rect x="814" y="616" width="26" height="14" fill="#E2403B"/><rect x="840" y="616" width="26" height="14" fill="#0E83C9"/><rect x="866" y="616" width="8" height="14" fill="#FFFFFF"/><rect x="874" y="616" width="26" height="14" fill="#E2403B"/><rect x="900" y="616" width="26" height="14" fill="#0E83C9"/><rect x="926" y="616" width="8" height="14" fill="#FFFFFF"/><rect x="934" y="616" width="26" height="14" fill="#E2403B"/><rect x="960" y="616" width="26" height="14" fill="#0E83C9"/><rect x="986" y="616" width="8" height="14" fill="#FFFFFF"/><rect x="994" y="616" width="26" height="14" fill="#E2403B"/><rect x="1020" y="616" width="26" height="14" fill="#0E83C9"/><rect x="1046" y="616" width="8" height="14" fill="#FFFFFF"/><rect x="1054" y="616" width="26" height="14" fill="#E2403B"/><rect x="1080" y="616" width="26" height="14" fill="#0E83C9"/><rect x="1106" y="616" width="8" height="14" fill="#FFFFFF"/><rect x="1114" y="616" width="26" height="14" fill="#E2403B"/><rect x="1140" y="616" width="26" height="14" fill="#0E83C9"/><rect x="1166" y="616" width="8" height="14" fill="#FFFFFF"/><rect x="1174" y="616" width="26" height="14" fill="#E2403B"/></g>
+
+  <text x="84" y="150" font-family="Inter" font-weight="700" font-size="25"
+        fill="#FFC53D" letter-spacing="10.5">COACH CODY&#8217;S</text>
+  <text x="1116" y="150" text-anchor="end" font-family="Inter" font-weight="500"
+        font-size="20" fill="#7FA8B5" letter-spacing="1.6">coach-cody-workout-library.onrender.com</text>
+
+  <text x="80" y="268" font-family="Inter Display, Inter" font-weight="800"
+        font-size="124" fill="#EAF6F6" letter-spacing="-3.5">WORKOUT</text>
+  <text x="80" y="386" font-family="Inter Display, Inter" font-weight="800"
+        font-size="124" fill="#FFC53D" letter-spacing="-3.5">LIBRARY</text>
+
+  <text x="84" y="446" font-family="Inter" font-weight="500" font-size="27" fill="#9DC4CE">
+    473 swim practices. Free to take, free to run, free to steal.
+  </text>
+
+  <rect x="84" y="492" width="86" height="4" rx="2" fill="#FFC53D"/>
+
+  
+  <text x="84" y="566" font-family="Inter Display, Inter" font-weight="800"
+        font-size="42" fill="#FFC53D" letter-spacing="-1">473</text>
+  <text x="84" y="592" font-family="Inter" font-weight="600" font-size="16"
+        fill="#9DC4CE" letter-spacing="3.2">PRACTICES</text>
+  
+  <text x="300" y="566" font-family="Inter Display, Inter" font-weight="800"
+        font-size="42" fill="#EAF6F6" letter-spacing="-1">365</text>
+  <text x="300" y="592" font-family="Inter" font-weight="600" font-size="16"
+        fill="#9DC4CE" letter-spacing="3.2">SCY</text>
+  
+  <text x="430" y="566" font-family="Inter Display, Inter" font-weight="800"
+        font-size="42" fill="#EAF6F6" letter-spacing="-1">26</text>
+  <text x="430" y="592" font-family="Inter" font-weight="600" font-size="16"
+        fill="#9DC4CE" letter-spacing="3.2">SCM</text>
+  
+  <text x="548" y="566" font-family="Inter Display, Inter" font-weight="800"
+        font-size="42" fill="#EAF6F6" letter-spacing="-1">36</text>
+  <text x="548" y="592" font-family="Inter" font-weight="600" font-size="16"
+        fill="#9DC4CE" letter-spacing="3.2">LCM</text>
+  
+  <text x="680" y="566" font-family="Inter Display, Inter" font-weight="800"
+        font-size="42" fill="#FFC53D" letter-spacing="-1">1.8M</text>
+  <text x="680" y="592" font-family="Inter" font-weight="600" font-size="16"
+        fill="#9DC4CE" letter-spacing="3.2">TOTAL DISTANCE</text>
+
+</svg>

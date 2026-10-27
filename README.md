@@ -38,13 +38,16 @@ Every practice keeps credit to whoever wrote it.
 | File | What it does |
 |---|---|
 | `index.html` | The whole app. One file, no build step, no dependencies. |
-| `config.js` | Your name, your email, your repo URL. **The only file you have to edit.** |
+| `config.js` | Your name, your email, and the Start Here picks. **The only file you have to edit.** |
 | `data/workouts.json` | The source of truth. 473 practices. Edit this to add or fix one. |
 | `data/workouts.js` | Generated from the JSON — this is what the page loads. |
 | `tools/build-data.py` | Regenerates `workouts.js` after you edit the JSON. |
 | `coaches.html` | **New Coaches** — welcome, glossary, how a practice is built. |
 | `submit.html` | **Send a Practice** — any format, credited to the coach. |
 | `style.css` | Shared styles across all pages, including the lane rope. |
+| `og-image.png` | Social preview card. Regenerate it if the practice count changes a lot. |
+| `favicon.svg` / `.png` | Browser tab and phone home-screen icon. |
+| `robots.txt` / `sitemap.xml` | Lets search engines in, keeps Deck Pass out. |
 | `admin.html` | **Deck Pass** — the tool for turning raw practices into library entries. |
 | `render.yaml` | Tells Render how to serve the site. You shouldn't need to touch it. |
 
@@ -93,6 +96,58 @@ Click **Create Static Site**. First deploy takes about a minute.
 Your URL shows at the top of the service page: `https://coach-cody-workout-library.onrender.com`. That's the link you share.
 
 Every push to `main` from here on redeploys automatically.
+
+---
+
+## Start here (the curated six)
+
+The top of the library shows a short "Start here" row: a handful of practices you want a brand-new coach to run first.
+
+**These ship as placeholders.** They were picked mechanically for clean structure and a good spread across a week, not by you. Swapping them for your own picks is the single highest-value edit on the site, because it turns a pile of 473 into a door someone can walk through.
+
+Edit `starterPicks` in `config.js`:
+
+```js
+starterPicks: [
+  { id: 276, why: "A clean threshold day. This is the workout you will run more often than any other." },
+  ...
+]
+```
+
+To find an id, open a practice on the site and look at the link: it ends in `#p=276`. Set `starterPicks: []` to hide the row entirely.
+
+---
+
+## Using the library
+
+**Three filter rows,** stacked so you narrow the same way you'd think about it:
+
+- **Pool** - SCY, SCM, LCM
+- **Length** - Under 2k, 2k-3k, 3k-4k, 4k+. This is the "I have an hour" filter.
+- **Focus** - the twelve energy systems
+
+Plus search across every set line, and a sort (shortest first, longest first, A-Z). Filters stack, and **Clear filters** resets everything.
+
+**Click any practice** to open the full sheet. From there:
+
+- **Print this practice** - prints just that practice on clean white paper, nothing else on the page. Take it on deck.
+- **Copy as text** - plain text for a group chat or an email.
+- **Copy link** - a direct link to that one practice (`#p=142`). Send a coach exactly the set you meant.
+- **Arrow keys** step through the filtered list. **Esc** closes.
+
+**Pick one for me** opens a random practice from whatever is currently filtered.
+
+The grid loads 24 at a time and pulls more as you scroll, so it stays quick on a phone.
+
+---
+
+## Known data to clean up
+
+A few records came through the original import with distances that aren't real practice distances. The site handles them gracefully (they show as `--` and sort to the end), but they're worth fixing in Deck Pass when you get a chance:
+
+**Placeholder distances** - ids 96, 65, 88, 291, 297, 19, 24 (values of 0, 5, 40, 395).
+
+**Too big for a single practice** - id 282 reads 150,325; ids 332, 287, 283, 288, 284, 289 land between 11,875 and 21,350. These look like full-day or full-week totals rather than one session.
 
 ---
 
