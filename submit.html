@@ -87,6 +87,24 @@ p.body b{color:var(--foam)}
 .sendrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;align-items:center}
 .sendrow .or{color:var(--mute);font-size:14px}
 .nomail{color:var(--coral);font-size:15px;line-height:1.6}
+
+@media(max-width:700px){
+  .formats{grid-template-columns:1fr;gap:10px}
+  .fmt{padding:14px 15px}
+  .fmt b{font-size:17px}
+  .fmt span{font-size:14.5px}
+  .credit{padding:18px 16px}
+  .credit .demo{padding:13px 14px}
+  .credit .demo .dt{font-size:19px}
+  .check li{padding:10px 0 10px 28px;font-size:15px}
+  .sendbox{padding:19px 16px}
+  .addr{gap:8px}
+  .addr code{font-size:14.5px;padding:13px;min-width:0;flex:1 1 100%}
+  .copybtn{width:100%;text-align:center;min-height:46px}
+  .tmpl{font-size:12px;min-height:170px}
+  .sendrow{gap:8px}
+  .sendrow .or{width:100%;text-align:center}
+}
 </style>
 </head>
 <body>

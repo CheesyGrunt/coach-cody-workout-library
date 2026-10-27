@@ -161,14 +161,110 @@ header.hero{padding:46px 0 24px}
 .xbtn:hover{border-color:var(--gold);color:var(--gold)}
 .navbtns{display:flex;gap:8px;margin-left:auto}
 
-@media(max-width:620px){
-  .frow{flex-wrap:wrap}
-  .flab{width:100%;margin-bottom:-4px}
-  .grid{grid-template-columns:1fr}
-  .stats{gap:18px}
-  .shd,.sbody,.sact{padding-left:18px;padding-right:18px}
-  .shd h2{font-size:26px}
-  .mcell{padding:9px 12px}
+/* ---------- filters toggle (mobile only) ---------- */
+.filtbtn{display:none;align-items:center;gap:8px}
+.fbadge{background:var(--gold);color:#1a1300;border-radius:999px;font-family:'JetBrains Mono';
+  font-size:11px;font-weight:600;padding:1px 7px;line-height:1.5}
+.filtbtn.on{border-color:var(--gold);color:var(--gold)}
+
+/* scroll affordance on the chip rows */
+.segwrap{position:relative;flex:1;min-width:0}
+.seg{scroll-padding-left:4px}
+
+/* ---------- back to top ---------- */
+.totop{position:fixed;right:16px;bottom:16px;z-index:40;width:46px;height:46px;border-radius:50%;
+  background:var(--gold);color:#1a1300;border:0;font-size:21px;cursor:pointer;
+  box-shadow:0 6px 20px rgba(0,0,0,.45)}
+.totop[hidden]{display:none}
+
+/* ---------- tablet ---------- */
+@media(max-width:820px){
+  .grid{grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
+}
+
+/* ---------- phone ---------- */
+@media(max-width:700px){
+  /* hero: get to the practices faster */
+  header.hero{padding:26px 0 16px}
+  h1{font-size:clamp(34px,11vw,46px)}
+  .tag{font-size:15.5px;line-height:1.6;margin-top:11px}
+  .tag.secondary{display:none}
+  .creed{margin-top:14px;font-size:13.5px}
+  .ctarow{margin-top:18px;gap:8px}
+  .cta{flex:1;justify-content:center;padding:13px 12px;font-size:14.5px}
+
+  /* stats as a tidy grid instead of a ragged wrap */
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px 10px;margin-top:18px}
+  .stat .n{font-size:25px}
+  .stat .l{font-size:9.5px;letter-spacing:.1em}
+
+  /* controls collapse behind a Filters button */
+  .controls{padding:10px 0}
+  .filtbtn{display:inline-flex}
+  .frows{display:none;margin-top:4px}
+  .controls.filtersopen .frows{display:block}
+  .frow{flex-wrap:wrap;gap:6px;margin-top:12px}
+  .flab{width:100%;margin-bottom:0;font-size:11px}
+  #lucky .lbl{display:none}
+  #lucky{padding:11px 14px;font-size:17px;line-height:1}
+
+  /* bigger taps */
+  .seg button{padding:9px 15px;font-size:13.5px;min-height:40px}
+  .btn{min-height:42px}
+
+  .resultbar{gap:10px;margin:16px 0 12px}
+  .sortsel{margin-left:0;width:100%;padding:10px;font-size:14px}
+
+  /* cards: one up, roomier type */
+  .grid{grid-template-columns:1fr;gap:14px}
+  .chead{padding:15px 16px 0}
+  .ctitle{font-size:20px;margin-bottom:11px}
+  .mcell{padding:10px 12px}
+  .mcell .mv{font-size:18px}
+  .mcell .ml{font-size:9.5px}
+  .prev{padding:13px 16px 15px;max-height:184px}
+  .sline{font-size:14.5px;line-height:1.5;padding:4px 0}
+  .svol{font-size:13px;min-width:48px}
+  .sint{font-size:12px}
+  .shead{font-size:13px;margin:13px 0 5px}
+
+  /* start here: one card at a time, swipeable */
+  .sthead h2{font-size:24px}
+  .sthead p{font-size:14px}
+  .strail{grid-template-columns:1fr;gap:10px}
+
+  /* the practice sheet goes full screen */
+  .ovl{padding:0;align-items:stretch}
+  .sheet{border-radius:0;border-left:0;border-right:0;min-height:100%;
+    display:flex;flex-direction:column;margin:0}
+  .shd{padding:22px 18px 0}
+  .shd h2{font-size:25px}
+  .byline{font-size:12.5px;margin-bottom:14px}
+  .sbody{padding:4px 18px 16px;flex:1}
+  .sbody .sline{font-size:15.5px;padding:6px 0;gap:10px}
+  .sbody .svol{font-size:14.5px;min-width:56px}
+  .sbody .shead{font-size:15px;margin:20px 0 8px}
+  /* action bar pinned so Print and Copy are always reachable */
+  .sact{position:sticky;bottom:0;background:rgba(7,23,31,.96);backdrop-filter:blur(10px);
+    border-top:1px solid var(--line);padding:11px 18px;gap:8px;margin:0}
+  .sact .btn{flex:1;min-width:0;padding:12px 8px;font-size:13.5px}
+  .navbtns{margin-left:0;width:100%;display:flex;gap:8px}
+  .navbtns .btn{flex:1}
+  .xbtn{top:12px;right:12px;width:38px;height:38px}
+  .totop{right:12px;bottom:12px}
+}
+
+@media(max-width:380px){
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .sact .btn{font-size:12.5px;letter-spacing:.04em}
+  /* three metrics across a 320px screen: tighten before anything clips */
+  .mcell{padding:9px 8px}
+  .mcell .mv{font-size:16px;white-space:nowrap}
+  .mcell .ml{font-size:9px;letter-spacing:.07em}
+  .chead{padding:14px 14px 0}
+  .prev{padding:12px 14px 14px}
+  .ctitle{font-size:18.5px}
+  .badge{font-size:10.5px;padding:4px 8px;white-space:normal}
 }
 
 /* ---------- print: just the open practice ---------- */
@@ -273,11 +369,16 @@ header.hero{padding:46px 0 24px}
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9DC4CE" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4-4"/></svg>
       <input id="q" type="search" placeholder="Search sets, drills, distances..." autocomplete="off">
     </label>
-    <button class="btn" id="lucky" title="Open a random practice from what&#39;s showing">&#10022; Pick one for me</button>
+    <button class="btn filtbtn" id="filtbtn" aria-expanded="false" aria-controls="frows">
+      Filters<span class="fbadge" id="fbadge" hidden>0</span>
+    </button>
+    <button class="btn" id="lucky" title="Open a random practice from what&#39;s showing">&#10022;<span class="lbl"> Pick one for me</span></button>
   </div>
-  <div class="frow"><span class="flab">Pool</span><div class="seg" id="courses"></div></div>
-  <div class="frow"><span class="flab">Length</span><div class="seg" id="dists"></div></div>
-  <div class="frow"><span class="flab">Focus</span><div class="seg" id="pills"></div></div>
+  <div class="frows" id="frows">
+    <div class="frow"><span class="flab">Pool</span><div class="seg" id="courses"></div></div>
+    <div class="frow"><span class="flab">Length</span><div class="seg" id="dists"></div></div>
+    <div class="frow"><span class="flab">Focus</span><div class="seg" id="pills"></div></div>
+  </div>
 </div></div>
 
 <main class="wrap">
@@ -328,6 +429,8 @@ header.hero{padding:46px 0 24px}
   <a href="coaches.html">New coaches</a> &middot;
   <a href="admin.html">Deck Pass</a>
 </div></footer>
+
+<button class="totop" id="totop" aria-label="Back to top" hidden>&uarr;</button>
 
 <!-- practice sheet -->
 <div class="ovl" id="ovl" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
@@ -604,6 +707,7 @@ function render(reset=true){
     `Showing <b>${Math.min(shown,current.length)}</b> of <b>${current.length}</b>`+
     (current.length!==total?` (filtered from ${total})`:' practices');
   document.getElementById('clear').style.display=any?'':'none';
+  if(typeof window.updateFilterBadge==='function') window.updateFilterBadge();
   document.getElementById('empty').style.display=current.length?'none':'block';
 
   grid.innerHTML='';
@@ -750,6 +854,36 @@ document.getElementById('lucky').onclick=()=>{
     host.appendChild(el);
   });
   if (shownAny) sec.style.display = '';
+})();
+
+/* ============ filters toggle + active count ============ */
+(function(){
+  const bar=document.querySelector('.controls');
+  const btn=document.getElementById('filtbtn');
+  const badge=document.getElementById('fbadge');
+  if(!bar||!btn) return;
+  btn.onclick=()=>{
+    const open=bar.classList.toggle('filtersopen');
+    btn.classList.toggle('on',open);
+    btn.setAttribute('aria-expanded',open?'true':'false');
+  };
+  window.updateFilterBadge=function(){
+    let n=0;
+    if(fCourse!=='All')n++; if(fDist!=='All')n++; if(fType!=='All')n++;
+    badge.textContent=n;
+    badge.hidden = n===0;
+    btn.classList.toggle('on', n>0 || bar.classList.contains('filtersopen'));
+  };
+  window.updateFilterBadge();
+})();
+
+/* ============ back to top ============ */
+(function(){
+  const b=document.getElementById('totop'); if(!b) return;
+  b.onclick=()=>{ try{ window.scrollTo({top:0,behavior:'smooth'}); }catch(e){ window.scrollTo(0,0); } };
+  const sync=()=>{ b.hidden = (window.scrollY||0) < 700; };
+  window.addEventListener('scroll',sync,{passive:true});
+  sync();
 })();
 
 /* ============ the creed ============ */
